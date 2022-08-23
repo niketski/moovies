@@ -1,5 +1,4 @@
 
-import './App.scss';
 import MainRoutes from './Routes';
 import { Link } from 'react-router-dom';
 
