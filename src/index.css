@@ -1,0 +1,21 @@
+/* global variables */
+:root {
+    --font-primary: 'Montserrat', sans-serif;
+    --font-secondary: 'Anton', sans-serif;
+    --color-primary: #c960fc;
+    --color-secondary: #1e272e;
+    --color-accent: #121212;
+}
+/* end  global variables*/
+
+/* resets */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+/* end resets */
