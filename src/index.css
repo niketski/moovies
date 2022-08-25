@@ -1,10 +1,18 @@
 /* global variables */
 :root {
+    /* fonts */
     --font-primary: 'Montserrat', sans-serif;
     --font-secondary: 'Anton', sans-serif;
+
+    /* colors */
     --color-primary: #c960fc;
     --color-secondary: #1e272e;
     --color-accent: #121212;
+
+    /* breakpoints */
+    --bp-desktop-sm: '1199px';
+    --bp-mobile: '991px';
+    --bp-mobile-sm: '480px';
 }
 /* end  global variables*/
 
@@ -17,5 +25,16 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
+    background-color: var(--color-secondary);
 }
 /* end resets */
+
+/* global classes */
+.container {
+    width: 1170px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* end global classes */

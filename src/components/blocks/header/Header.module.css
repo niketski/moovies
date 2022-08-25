@@ -1,0 +1,13 @@
+.mainHeader {
+    padding: 19.5px 0;
+}
+
+    .headerRow {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+        .headerRight {
+
+        }
