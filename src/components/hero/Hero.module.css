@@ -1,0 +1,62 @@
+.hero {
+    position: relative;
+}
+
+    .heroInner {
+        position: relative;
+    }
+
+        .heroBanner {
+            position: relative;
+        }
+
+        .heroBanner::after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            opacity: .60;
+        }
+
+            .heroBanner canvas {
+                display: block;
+                width: 100%;
+            }
+
+            .heroBanner img {
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+        .heroContent {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+        }
+
+            h2 {
+                font: normal 400 82px/100px var(--font-secondary);
+                color: #fff;
+                text-transform: uppercase;
+                max-width: 60%;
+                margin-bottom: 19px;
+            }
+
+            p {
+                font-weight: 400;
+                font-size: 16px;
+                color: #fff;
+                line-height: 24px;
+                max-width: 775px;
+                margin-bottom: 23px;
+            }
