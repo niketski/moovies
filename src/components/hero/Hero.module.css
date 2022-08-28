@@ -1,4 +1,4 @@
-.hero {
+.SectionHero {
     position: relative;
 }
 
@@ -44,7 +44,7 @@
             width: 100%;
         }
 
-            h2 {
+            .heroContent h2 {
                 font: normal 400 82px/100px var(--font-secondary);
                 color: #fff;
                 text-transform: uppercase;
@@ -52,7 +52,7 @@
                 margin-bottom: 19px;
             }
 
-            p {
+            .heroContent p {
                 font-weight: 400;
                 font-size: 16px;
                 color: #fff;

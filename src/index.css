@@ -37,4 +37,9 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+
+.site-wrapper {
+    max-width: 1600px;
+    margin: 0 auto;
+}
 /* end global classes */

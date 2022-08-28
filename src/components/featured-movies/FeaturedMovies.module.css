@@ -1,0 +1,44 @@
+.SectionFeaturedMovies {
+    padding: 105px 0;
+    overflow: hidden;
+}
+
+    .FmRow {
+        display: flex;
+    }
+
+        .FmLeft {
+            width: 29.12%;
+        }
+
+            .FmContent {
+                padding-left: 14.47%;
+                padding-right: 11.20%;
+            }
+
+            .FmTitle {
+                margin-bottom: 40px;
+            }
+
+            .FmContent p {
+                font-weight: 400;
+                font-size: 14px;
+                color: #fff;
+                line-height: 24px;
+                margin-bottom: 24px;
+            }
+
+        .FmRight {
+            width: 70.88%;
+        }
+
+            .FmList {
+                margin-left: -10px;
+                margin-right: -30px;
+            }
+
+            .FeaturedMoviesCard {
+                display: inline-block;
+                vertical-align: top;
+                width: calc(100% / 4);
+            }

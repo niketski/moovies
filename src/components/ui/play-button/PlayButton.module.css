@@ -1,0 +1,21 @@
+.PlayBtn {
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    border: none;
+    padding: 0;
+    width: 65px;
+    height: 65px;
+    display: inline-flex;
+    vertical-align: middle;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+}
+
+    .IconPlay {
+        border-top: 18px solid transparent;
+        border-bottom: 18px solid transparent;
+        border-left: 32px solid #fff;
+    }

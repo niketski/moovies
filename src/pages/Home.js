@@ -1,5 +1,6 @@
 import Hero from "../components/hero/Hero";
 import bannerImage from '../assets/images/home-banner.jpg';
+import FeaturedMovies from "../components/featured-movies/FeaturedMovies";
 
 const Home = () => {
     const heroProps = {
@@ -13,6 +14,7 @@ const Home = () => {
     return (
         <div>
             <Hero {...heroProps}/>
+            <FeaturedMovies/>
         </div>
     );
 }

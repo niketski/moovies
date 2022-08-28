@@ -1,9 +1,10 @@
 import styles from './Hero.module.css';
-import Button from '../ui/Button';
+import Button from '../ui/button/Button';
+import Section from '../ui/section/Section';
 
 const Hero = props => {
     return (
-        <section className={styles.hero}>
+        <Section className={styles.SectionHero}>
             <div className={styles.heroInner}>
                 <div className={styles.heroBanner}>
                     <canvas width="1600" height={props.height}></canvas>
@@ -17,7 +18,7 @@ const Hero = props => {
                     </div>
                 </div>
             </div>
-        </section>
+        </Section>
     );
 };
 

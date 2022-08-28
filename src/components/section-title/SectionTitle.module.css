@@ -1,0 +1,11 @@
+.SectionTitle {
+    font: normal 400 75px/1 var(--font-secondary);
+    text-transform: uppercase;
+    color: #fff;
+}
+
+    .SectionTitle span {
+        padding-left: 36px;
+        display: block;
+        color: var(--color-primary);
+    }
