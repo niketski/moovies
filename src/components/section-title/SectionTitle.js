@@ -16,8 +16,6 @@ const SectionTitle = props => {
     // wrap the rest of the text except for the first word
     const word      = title.split(' ');
     const firstWord = word.shift();
-
-    console.log(props.className);
     
     return (
         <h2 className={`${styles.SectionTitle} ${props.className ? props.className : ''}`}>{firstWord} <span>{word.join(' ')}</span></h2>

@@ -1,4 +1,5 @@
 import styles from './FeaturedMovies.module.css';
+import Slider from 'react-slick';
 
 import Section from '../ui/section/Section';
 import Button from '../ui/button/Button';
@@ -8,6 +9,15 @@ import FeaturedCard from '../featured-card/FeaturedCard';
 import { Link } from 'react-router-dom';
 
 const FeaturedMovies = props => {
+    const slickSettings = {
+        dots: false,
+        infinite: true,
+        speed: 1000,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        arrows: false,
+    };
+
     return (
         <Section className={styles.SectionFeaturedMovies}>
             <div className="site-wrapper">
@@ -21,30 +31,38 @@ const FeaturedMovies = props => {
                     </div>
                     <div className={styles.FmRight}>
                         <div className={styles.FmList}>
-                            <FeaturedCard
-                                className={styles.FeaturedMoviesCard}
-                                link="/"
-                                featuredImage={featuredImg}
-                                title="Thor: Love and Thunder"
-                            />
-                            <FeaturedCard
-                                className={styles.FeaturedMoviesCard}
-                                link="/"
-                                featuredImage={featuredImg}
-                                title="Thor: Love and Thunder"
-                            />
-                             <FeaturedCard
-                                className={styles.FeaturedMoviesCard}
-                                link="/"
-                                featuredImage={featuredImg}
-                                title="Thor: Love and Thunder"
-                            />
-                             <FeaturedCard
-                                className={styles.FeaturedMoviesCard}
-                                link="/"
-                                featuredImage={featuredImg}
-                                title="Thor: Love and Thunder"
-                            />
+                            <Slider {...slickSettings}>
+                                <FeaturedCard
+                                    className={styles.FeaturedMoviesCard}
+                                    link="/"
+                                    featuredImage={featuredImg}
+                                    title="Thor: Love and Thunder"
+                                />
+                                <FeaturedCard
+                                    className={styles.FeaturedMoviesCard}
+                                    link="/"
+                                    featuredImage={featuredImg}
+                                    title="Thor: Love and Thunder"
+                                />
+                                <FeaturedCard
+                                    className={styles.FeaturedMoviesCard}
+                                    link="/"
+                                    featuredImage={featuredImg}
+                                    title="Thor: Love and Thunder"
+                                />
+                                <FeaturedCard
+                                    className={styles.FeaturedMoviesCard}
+                                    link="/"
+                                    featuredImage={featuredImg}
+                                    title="Thor: Love and Thunder"
+                                />
+                                <FeaturedCard
+                                    className={styles.FeaturedMoviesCard}
+                                    link="/"
+                                    featuredImage={featuredImg}
+                                    title="Thor: Love and Thunder"
+                                />
+                            </Slider>
                         </div>
                     </div>
                 </div>

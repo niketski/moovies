@@ -1,7 +1,7 @@
 .FeaturedCard {
     display: inline-block;
     vertical-align: middle;
-    padding: 10px;
+    padding: 20px 10px;
 }
 
     .FeaturedCard a {

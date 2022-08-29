@@ -1,11 +1,20 @@
+import { useRef, useEffect } from 'react';
 import styles from './Header.module.css';
 import headerLogo from '../../../assets/images/main-logo.png';
 import { Link } from 'react-router-dom';
 import HeaderNav from './header-nav/HeaderNav';
 
 const Header = () => {
+    const headerRef = useRef();
+
+    useEffect(() => {
+        
+        console.log(headerRef.current.offsetHeight);
+
+    }, []);
+
     return (
-        <header className={styles.mainHeader}>
+        <header ref={headerRef} className={styles.mainHeader}>
             <div className="container">
                 <div className={`${styles.headerRow}`}>
                     <div className="headerLeft">
