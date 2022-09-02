@@ -24,7 +24,7 @@ const FeaturedTv = props => {
                 <div className={styles.FTvRow}>
                     <div className={styles.FTvRight}>
                         <div className={styles.FTvContent}>
-                            <SectionTitle className={styles.FTvTitle}>Latest Tv Series</SectionTitle>
+                            <SectionTitle firstLineWordsCount="2" className={styles.FTvTitle}>Latest Tv Series</SectionTitle>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                             <Button className={styles.FTvBtn} to="/tv-series">View More</Button>
                         </div>

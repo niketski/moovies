@@ -22,10 +22,13 @@
 
             .FTvTitle {
                 margin-bottom: 40px;
+                padding-right: 33px;
             }
 
                 .FTvTitle span {
                     color: #fff;
+                    padding-left: 0;
+                    margin-right: -36px;
                 }
 
             .FTvContent p {

@@ -1,0 +1,34 @@
+.FooterNav {
+
+}
+
+    .FooterNav ul {
+        list-style: none;
+    }
+
+        .FooterNav li {
+            display: inline-block;
+            vertical-align: top;
+            width: 50%;
+        }
+
+        .FooterNav li:nth-child(odd) {
+            width: 47%;
+        }
+
+        .FooterNav li:nth-child(even) {
+            width: 53%;
+        }
+
+            .FooterNav li a {
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 26px;
+                color: #fff;
+                text-decoration: none;
+                transition: color .3s ease;
+            }
+
+            .FooterNav li a:hover {
+                color: var(--color-primary);
+            }
