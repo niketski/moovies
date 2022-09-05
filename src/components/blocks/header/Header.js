@@ -4,6 +4,8 @@ import styles from './Header.module.css';
 import headerLogo from '../../../assets/images/main-logo.png';
 import { Link } from 'react-router-dom';
 import HeaderNav from './header-nav/HeaderNav';
+import BurgerMenuButton from '../../ui/burger-menu-button/BurgerMenuButton';
+import BurgerMenu from '../../ui/burger-menu/BurgerMenu';
 
 const Header = () => {
     const headerRef = useRef();
@@ -29,22 +31,26 @@ const Header = () => {
     window.addEventListener('resize', handleResize);
 
     return (
-        <header ref={headerRef} className={styles.mainHeader}>
-            <div className="container">
-                <div className={`${styles.headerRow}`}>
-                    <div className="headerLeft">
-                        <div className={styles.headerLogo}>
-                            <Link to="/">
-                                <img src={headerLogo} alt="Moovies"/>
-                            </Link>
+        <>
+            <header ref={headerRef} className={styles.mainHeader}>
+                <div className="container">
+                    <div className={`${styles.headerRow}`}>
+                        <div className="headerLeft">
+                            <div className={styles.headerLogo}>
+                                <Link to="/">
+                                    <img src={headerLogo} alt="Moovies"/>
+                                </Link>
+                            </div>
+                        </div>
+                        <div className={styles.headerRight}>
+                            <HeaderNav className="desktop-only"/>
+                            <BurgerMenuButton className="mobile-only"/>
                         </div>
                     </div>
-                    <div className={styles.headerRight}>
-                        <HeaderNav className="desktop-only"/>
-                    </div>
                 </div>
-            </div>
-        </header>
+            </header>
+            <BurgerMenu/>
+        </>
     );
 };
 
