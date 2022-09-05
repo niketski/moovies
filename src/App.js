@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useContext } from 'react';
 import MainRoutes from './Routes';
 import { Link } from 'react-router-dom';
-import { DOMLoadedContext } from './context/DOMLoaded';
+import { DOMLoadedContext } from './context/DOMLoadedContext';
 import Header from './components/blocks/header/Header';
 import Footer from './components/blocks/footer/Footer';
 

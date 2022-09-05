@@ -12,7 +12,13 @@
     transform: translateX(-100%);
     opacity: 0;
     pointer-events: none;
-    transition: transform .3s ease;
+    transition: transform .3s ease, opacity .3s ease;
+}
+
+.BurgerMenu[class*="active"] {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
 }
 
     .BurgerMenuContent {
@@ -73,5 +79,10 @@
     background: #000;
     opacity: 0;
     pointer-events: none;
-    /* opacity: .50; */
+    transition: opacity .3s ease;
+}
+
+.BurgerMenuBackDrop[class*="active"] {
+    opacity: .50;
+    pointer-events: auto;
 }

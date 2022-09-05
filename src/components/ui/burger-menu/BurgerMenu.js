@@ -1,10 +1,14 @@
 import styles from './BurgerMenu.module.css';
 import { Link, NavLink } from 'react-router-dom';
+import { useContext } from 'react';
+import { BurgerMenuContext } from '../../../context/BurgerMenuContext';
 
 const BurgerMenu = props => {
+    const BurgerMenuCtx = useContext(BurgerMenuContext);
+
     return (
         <>
-            <div className={`${styles.BurgerMenu} ${props.className ? props.className : ''}`}>
+            <div className={`${styles.BurgerMenu} ${BurgerMenuCtx.isActive ? 'active' : ''} ${props.className ? props.className : ''}`}>
                 <div className={styles.BurgerMenuContent}>
                     <div className={styles.BurgerMenuNav}>
                         <ul>
@@ -18,7 +22,7 @@ const BurgerMenu = props => {
                     </div>
                 </div>
             </div>
-            <div className={styles.BurgerMenuBackDrop}></div>
+            <div className={`${styles.BurgerMenuBackDrop} ${BurgerMenuCtx.isActive ? 'active' : ''}`}  onClick={props.onCloseHandler}></div>
         </>
     );
 };

@@ -1,5 +1,6 @@
 import { useRef, useEffect, useContext, useState } from 'react';
-import { DOMLoadedContext } from '../../../context/DOMLoaded';
+import { DOMLoadedContext } from '../../../context/DOMLoadedContext';
+import { BurgerMenuContext } from '../../../context/BurgerMenuContext';
 import styles from './Header.module.css';
 import headerLogo from '../../../assets/images/main-logo.png';
 import { Link } from 'react-router-dom';
@@ -7,15 +8,25 @@ import HeaderNav from './header-nav/HeaderNav';
 import BurgerMenuButton from '../../ui/burger-menu-button/BurgerMenuButton';
 import BurgerMenu from '../../ui/burger-menu/BurgerMenu';
 
+
 const Header = () => {
     const headerRef = useRef();
     const [headerHeight, setHeaderHeight] = useState(0);
     const DOMLoadedCtx = useContext(DOMLoadedContext);
+    const BurgerMenuCtx = useContext(BurgerMenuContext);
 
     const handleResize = () => {
         DOMLoadedCtx.setWrapperPaddingTop(headerRef.current.offsetHeight);
         setHeaderHeight(headerRef.current.offsetHeight);
         console.log('test');
+    };
+
+    const BurgerMenuOpenHandler = () => {
+        BurgerMenuCtx.burgerMenuOpen();
+    };
+
+    const BurgerMenuCloseHandler = () => {
+        BurgerMenuCtx.burgerMenuClose();
     };
 
     useEffect(() => {
@@ -44,12 +55,12 @@ const Header = () => {
                         </div>
                         <div className={styles.headerRight}>
                             <HeaderNav className="desktop-only"/>
-                            <BurgerMenuButton className="mobile-only"/>
+                            <BurgerMenuButton onClick={BurgerMenuOpenHandler} className="mobile-only"/>
                         </div>
                     </div>
                 </div>
             </header>
-            <BurgerMenu/>
+            <BurgerMenu onCloseHandler={BurgerMenuCloseHandler}/>
         </>
     );
 };
