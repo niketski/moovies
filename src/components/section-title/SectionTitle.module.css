@@ -9,3 +9,19 @@
         display: block;
         color: var(--color-primary);
     }
+
+@media (max-width: 1366px) {
+
+    .SectionTitle {
+        font-size: 50px;
+    }
+
+}
+
+@media (max-width: 1199px) {
+
+    .SectionTitle {
+        font-size: 42px;
+    }
+
+}

@@ -17,3 +17,9 @@
         .headerRight {
 
         }
+
+@media (max-width: 1199px) {
+    .headerLogo img {
+        max-width: 180px;
+    }
+}

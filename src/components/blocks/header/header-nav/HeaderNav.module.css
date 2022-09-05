@@ -29,6 +29,7 @@
                 letter-spacing: .1em;
                 padding: 2.5px 7px;
                 position: relative;
+                font-size: 16px;
             }
 
             .headerNav > ul > li > a::before {
@@ -48,3 +49,13 @@
             .headerNav > ul > li > a[class*="active"]::before {
                 width: 59%;
             }
+
+@media (max-width: 1199px) {
+    .headerNav > ul > li > a {
+        font-size: 12px;
+    }
+
+    .headerNav > ul > li {
+        margin-right: 13px;
+    }
+}

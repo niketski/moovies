@@ -6,7 +6,7 @@ const SectionTitle = props => {
     let formattedText         = title;
     const firstLineWordsCount = parseInt(props.firstLineWordsCount) ? parseInt(props.firstLineWordsCount) : 1;
 
-    if(titleWordCount < 2 || firstLineWordsCount === 1) {
+    if(titleWordCount < 2) {
 
         return (
             <h2 className={`${styles.SectionTitle} ${props.className ? props.className : ''}`}>{formattedText}</h2>

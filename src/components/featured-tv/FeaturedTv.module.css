@@ -58,3 +58,11 @@
                 vertical-align: top;
                 /* width: calc(100% / 4); */
             }
+
+@media (max-width: 1199px) {
+
+    .FTvContent p {
+        font-size: 12px;
+        line-height: 18px;
+    }
+}

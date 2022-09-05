@@ -30,6 +30,7 @@ const FeaturedTv = props => {
                         </div>
                     </div>
                     <div className={styles.FTvLeft}>
+                        <div className={styles.FTvList}>
                         <Slider {...slickSettings}>
                             <FeaturedCard
                                 className={styles.FeaturedMoviesCard}
@@ -62,6 +63,7 @@ const FeaturedTv = props => {
                                 title="Thor: Love and Thunder"
                             />
                         </Slider>
+                        </div>
                     </div>
                 </div>
             </div>

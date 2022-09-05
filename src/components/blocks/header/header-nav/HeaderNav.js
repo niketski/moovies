@@ -1,10 +1,10 @@
 import styles from './HeaderNav.module.css';
 import { Link, NavLink } from 'react-router-dom';
 
-const HeaderNav = () => {
+const HeaderNav = props => {
   
     return(
-        <nav className={styles.headerNav}>
+        <nav className={`${styles.headerNav} ${props.className ? props.className : ''}`}>
             <ul>
                 <li><NavLink to="/">Home</NavLink></li>
                 <li><NavLink to="/movies">Movies</NavLink></li>

@@ -10,9 +10,10 @@
     --color-accent: #121212;
 
     /* breakpoints */
-    --bp-desktop-sm: '1199px';
-    --bp-mobile: '991px';
-    --bp-mobile-sm: '480px';
+    --bp-dekstop-m: 1366px;
+    --bp-desktop-sm: 1199px;
+    --bp-mobile: 991px;
+    --bp-mobile-sm: 480px;
 }
 /* end  global variables*/
 
@@ -42,4 +43,36 @@ body {
     max-width: 1600px;
     margin: 0 auto;
 }
+
+.desktop-only,
+.mobile-only {
+    display: none;
+}
 /* end global classes */
+
+/* media queries */
+@media (max-width: 1199px) {
+    .container {
+        width: 900px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .container {
+        width: 900px;
+    }
+}
+
+@media (max-width: 991px) {
+
+    .mobile-only {
+        display: block;
+    }
+}
+
+@media (min-width: 992px) {
+    .desktop-only {
+        display: block;
+    }
+}
+/* end media queries */
