@@ -32,3 +32,12 @@
             .FooterNav li a:hover {
                 color: var(--color-primary);
             }
+
+@media (max-width: 991px) {
+
+    .FooterNav li:nth-child(odd), 
+    .FooterNav li:nth-child(even) {
+        width: 100%;
+    }
+
+}

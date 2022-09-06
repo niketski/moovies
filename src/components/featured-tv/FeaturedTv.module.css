@@ -54,9 +54,7 @@
             }
 
             .FeaturedMoviesCard {
-                display: inline-block;
-                vertical-align: top;
-                /* width: calc(100% / 4); */
+               width: 100%;
             }
 
 @media (max-width: 1199px) {
@@ -64,5 +62,42 @@
     .FTvContent p {
         font-size: 12px;
         line-height: 18px;
+    }
+}
+
+@media (max-width: 991px) {
+
+    .FTvRow {
+        display: block;
+    }
+
+    .FTvLeft,
+    .FTvRight {
+        width: 100%;
+    }
+
+    .FTvContent  {
+        text-align: center;
+        padding: 0 15px;
+        margin-bottom: 30px;
+    }
+
+    .FTvContent p {
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .FTvList {
+        margin: 0 auto;
+        max-width: 600px;
+    }
+
+    .FTvTitle {
+        padding-right: 0;
+    }
+
+    .FTvTitle span {
+        margin-right: 0;
     }
 }

@@ -65,3 +65,20 @@
                 line-height: 14px;
             }
 
+@media (max-width: 991px) {
+
+    .MainFooter {
+        padding: 90px 0 50px;
+    }
+
+    .FooterRow {
+        display: block;
+        margin-bottom: 0;
+    }
+
+    .FooterCol {
+        width: 100% !important;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+}

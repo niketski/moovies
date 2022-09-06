@@ -90,3 +90,15 @@
     }
     
 }
+
+@media (max-width: 767px) { 
+
+    .heroBanner canvas {
+        min-height: 100vh;
+    }
+
+    .heroContent h2 {
+        max-width: unset;
+    }
+
+}

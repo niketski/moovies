@@ -4,7 +4,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    max-width: 400px;
+    width: 400px;
+    max-width: 70%;
     z-index: 102;
     background: var(--color-secondary);
     overflow-y: auto;
@@ -85,4 +86,20 @@
 .BurgerMenuBackDrop[class*="active"] {
     opacity: .50;
     pointer-events: auto;
+}
+
+@media (max-width: 767px) {
+
+    .BurgerMenuContent {
+        padding: 50px 15px;
+    }
+    
+    .BurgerMenuNav li a {
+        font-size: 21px;
+    }
+    
+    .BurgerMenuNav li {
+        margin-bottom: 13px;
+    }
+
 }

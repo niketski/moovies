@@ -25,3 +25,11 @@
     }
 
 }
+
+@media (max-width: 991px) { 
+
+    .SectionTitle span {
+        display: inline-block;
+        padding: 0;
+    }
+}

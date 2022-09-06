@@ -44,10 +44,42 @@
                 /* width: calc(100% / 4); */
             }
 
+            .FeaturedMoviesCard {
+                width: 100%;
+            }
+
 @media (max-width: 1199px) {
 
     .FmContent p {
         font-size: 12px;
         line-height: 18px;
+    }
+}
+
+@media (max-width: 991px) {
+    .FmRow {
+        display: block;
+    }
+
+    .FmLeft,
+    .FmRight {
+        width: 100%;
+    }
+
+    .FmContent  {
+        text-align: center;
+        padding: 0 15px;
+        margin-bottom: 30px;
+    }
+
+    .FmContent p {
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .FmList {
+        margin: 0 auto;
+        max-width: 600px;
     }
 }

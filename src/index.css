@@ -57,9 +57,10 @@ body {
     }
 }
 
-@media (max-width: 1199px) {
+@media (max-width: 991px) {
     .container {
-        width: 900px;
+        width: 100%;
+        max-width: 800px;
     }
 }
 
