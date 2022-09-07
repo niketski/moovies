@@ -3,7 +3,7 @@ import { DOMLoadedContext } from '../../../context/DOMLoadedContext';
 import { BurgerMenuContext } from '../../../context/BurgerMenuContext';
 import styles from './Header.module.css';
 import headerLogo from '../../../assets/images/main-logo.png';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import HeaderNav from './header-nav/HeaderNav';
 import BurgerMenuButton from '../../ui/burger-menu-button/BurgerMenuButton';
 import BurgerMenu from '../../ui/burger-menu/BurgerMenu';
@@ -14,11 +14,12 @@ const Header = () => {
     const [headerHeight, setHeaderHeight] = useState(0);
     const DOMLoadedCtx = useContext(DOMLoadedContext);
     const BurgerMenuCtx = useContext(BurgerMenuContext);
+    const location = useLocation();
+    const headerClass = location.pathname === '/' ? '' : styles.IpHeader;
 
     const handleResize = () => {
         DOMLoadedCtx.setWrapperPaddingTop(headerRef.current.offsetHeight);
         setHeaderHeight(headerRef.current.offsetHeight);
-        console.log('test');
     };
 
     const BurgerMenuOpenHandler = () => {
@@ -43,7 +44,7 @@ const Header = () => {
 
     return (
         <>
-            <header ref={headerRef} className={styles.mainHeader}>
+            <header ref={headerRef} className={`${styles.mainHeader} ${headerClass}`}>
                 <div className="container">
                     <div className={`${styles.headerRow}`}>
                         <div className="headerLeft">

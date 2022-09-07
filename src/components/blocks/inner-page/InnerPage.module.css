@@ -1,0 +1,14 @@
+.InnerPage {
+    padding: 96px 0 0;
+}
+
+    .InnerPageWrapper {
+        min-height: 500px;
+    }
+
+    .InnerPageTitle {
+        font: normal 400 75px/1 var(--font-secondary);
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: .1em;
+    }

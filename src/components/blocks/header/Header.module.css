@@ -8,6 +8,10 @@
     background: var(--color-accent);
 }
 
+.mainHeader.IpHeader {
+    background-color: transparent;
+}
+
     .headerRow {
         display: flex;
         align-items: center;

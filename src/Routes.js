@@ -1,12 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
 
 // pages
-import Home from './pages/Home';
-import Movies from './pages/Movies';
-import TvSeries from './pages/TvSeries';
-import Contact from './pages/Contact';
-import Genres from './pages/Genres';
-import UpcomingMovies from './pages/UpcomingMovies';
+import Home from './pages/Home/Home';
+import Movies from './pages/Movies/Movies';
+import TvSeries from './pages/TvSeries/TvSeries';
+import Contact from './pages/Contact/Contact';
+import Genres from './pages/Genres/Genres';
+import UpcomingMovies from './pages/UpcomingMovies/UpcomingMovies';
 
 const MainRoutes = () => {
 
