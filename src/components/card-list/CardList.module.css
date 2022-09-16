@@ -1,0 +1,20 @@
+.cardList {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -8px 134px;
+}
+
+    .cardListCard {
+        width: calc(100% / 5);
+        padding: 15px 9px;
+    }
+
+    .cardListCard h4,
+    .cardListCard p {
+        text-align: initial;
+    }
+
+    .cardListCard h4  {
+        font-size: 14px;
+        font-weight: 600;
+    }

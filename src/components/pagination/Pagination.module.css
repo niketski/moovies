@@ -1,0 +1,54 @@
+.pagination {
+    padding: 20px 0;
+}
+
+    .paginationList {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+
+        .paginationList li {
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 1;
+            margin-right: 38px;
+        }
+
+        .paginationList li:nth-last-child(2) {
+            margin-right: 0;
+        }
+
+            .paginationList li a {
+                font-weight: 400;
+                color: #fff;
+                font-size: 18px;
+                text-decoration: none;
+                transition: opacity .3s ease;
+            }
+
+            .paginationList li a:hover {
+                opacity: .50;
+            }
+
+            .paginationList .pagiPrevButton a,
+            .paginationList .pagiNextButton a {
+                font-size: 27px;
+                color: var(--color-primary);
+                padding: 0;
+            }   
+
+            .paginationList .pagiPrevButton {
+                margin-right: 43px;
+            }
+
+            .paginationList .pagiNextButton {
+                margin-left: 43px;
+                margin-right: 0;
+            }
+
+            .paginationList .pagiActive a {
+                background-color: var(--color-primary);
+                padding: 2px 13.5px;
+            }

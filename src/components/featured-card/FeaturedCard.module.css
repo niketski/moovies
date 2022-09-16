@@ -67,3 +67,10 @@
             font-size: 16px;
             color: #fff;
         }
+
+        .FeaturedCard p {
+            color: #fff;
+            font-size: 12px;
+            text-align: center;
+            margin-top: 6px;
+        }

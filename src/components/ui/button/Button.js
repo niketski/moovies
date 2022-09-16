@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom';
 
 const Button = props => {
     return (
-        <Link className={`${styles.siteBtn} ${props.className}`} to={props.to}>{props.children}</Link>
+        <Link 
+            className={`${styles.siteBtn} ${props.className ? props.className : ''}`} 
+            to={props.to ? props.to : '/'}
+            onClick={props.onClick ? props.onClick : undefined}
+            >{props.children}</Link>
     );
 }
 

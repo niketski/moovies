@@ -1,0 +1,19 @@
+.filterTabs {
+    padding: 20px 0;
+}
+
+.tabsCenter {
+    text-align: center;
+}
+
+.tabsRight {
+    text-align: right;
+}
+
+    .filterTabs a {
+        margin-right: 15px;
+    }
+
+    .filterTabs a:last-child {
+        margin-right: 0;
+    }

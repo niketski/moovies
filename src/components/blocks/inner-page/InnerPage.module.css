@@ -12,3 +12,7 @@
         text-transform: uppercase;
         letter-spacing: .1em;
     }
+
+    .InnterPageContent {
+        padding: 49px 0 80px;
+    }

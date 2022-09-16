@@ -1,0 +1,46 @@
+.quickSearch {
+    max-width: 404px;
+}
+
+    .quickSearch form {
+        display: block;
+        position: relative;
+    }
+
+        .searchField {
+            display: inline-block;
+            width: 100%;
+            position: relative;
+        }
+
+            .searchField label {
+                display: none;
+            }
+
+                .searchField input {
+                    -webkit-appearance: none;
+                    appearance: none;
+                    outline: none;
+                    border: none;
+                    background: var(--color-accent);
+                    height: 55px;
+                    width: 100%;
+                    display: block;
+                    font-weight: 400;
+                    font-size: 16px;
+                    color: #bcbcbc;
+                    padding: 0 15px 0 60px;
+                }
+
+                .searchField svg {
+                    display: inline-block;
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    left: 17px;
+                    font-size: 24px;
+                }
+
+                    .searchField path {
+                        color: var(--color-primary);
+                    }

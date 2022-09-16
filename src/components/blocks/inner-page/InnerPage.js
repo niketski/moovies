@@ -6,7 +6,7 @@ const InnerPage = props => {
             <div className={styles.InnerPageWrapper}>
                 <div className="container">
                     <h1 className={styles.InnerPageTitle}>{props.title}</h1>
-                    <div className="InnterPageContent">
+                    <div className={styles.InnterPageContent}>
                         {props.children}
                     </div>
                 </div>

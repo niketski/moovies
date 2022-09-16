@@ -15,6 +15,9 @@ const FeaturedCard = props => {
                     <PlayButton/>
                 </div>
                 <h4>{props.title}</h4>
+                {
+                    props.details && <p>{props.details}</p>
+                }
             </Link>
         </div>
     );
