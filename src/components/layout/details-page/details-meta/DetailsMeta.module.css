@@ -1,0 +1,20 @@
+.detailsMeta {
+    list-style: none;
+    margin-bottom: 27px;
+}
+
+    .detailsMeta li {
+        font: normal 400 16px/1 var(--font-secondary);
+        color: var(--color-primary);
+        letter-spacing: .1em;
+        margin-bottom: 8px;
+    }
+
+    .detailsMeta li:last-child {
+        margin-bottom: 0;
+    }
+
+        .detailsMeta li span {
+            color: #fff;
+            font-family: var(--font-primary);
+        }

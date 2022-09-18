@@ -1,0 +1,57 @@
+.cast {
+    padding: 60px 0;
+}
+
+    .cast h2 {
+        font: normal 400 40px/1 var(--font-secondary);
+        letter-spacing: .050em;
+        color: #fff;
+        text-transform: uppercase;
+        margin-bottom: 42px;
+    }
+
+    .castList {
+        display: flex;
+        margin: 0 -20px;
+    }
+
+        .castItem {
+            width: calc(100% / 5);
+            padding: 10px 20px;
+        }
+
+            .castImg {
+                display: block;
+                position: relative;
+            }
+
+                .castImg canvas {
+                    display: block;
+                    width: 100%;
+                }
+
+                .castImg img {
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+
+            .castDetails {
+                color: #fff;
+                padding: 12px 0 0;
+            }
+
+                .castDetails h3 {
+                    font: normal 400 16px/1 var(--font-secondary);
+                    letter-spacing: .050em;
+                    margin-bottom: 12px;
+                }
+
+                .castDetails p {
+                    font-size: 12px;
+                    letter-spacing: .050em;
+                }

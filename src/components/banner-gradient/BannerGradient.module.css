@@ -1,0 +1,42 @@
+.bannerGradient {
+    display: block;
+    position: relative;
+}
+
+.bannerGradient::before,
+.bannerGradient::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.bannerGradient::before {
+    z-index: 2;
+    background-color: var(--color-secondary);
+    opacity: .30;
+}
+
+.bannerGradient::after {
+    z-index: 3;
+    background: linear-gradient(to top, var(--color-secondary), transparent 65%), 
+                linear-gradient(to top, var(--color-secondary), transparent 55%);
+}
+
+    .bannerGradient canvas {
+        display: block;
+        width: 100%;
+    }
+
+    .bannerGradient img {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }

@@ -7,6 +7,7 @@ import TvSeries from './pages/TvSeries/TvSeries';
 import Contact from './pages/Contact/Contact';
 import Genres from './pages/Genres/Genres';
 import UpcomingMovies from './pages/UpcomingMovies/UpcomingMovies';
+import DetailsPage from './components/layout/details-page/DetailsPage';
 
 const MainRoutes = () => {
 
@@ -18,6 +19,7 @@ const MainRoutes = () => {
             <Route path='/genres' element={<Genres/>}/>
             <Route path='/upcoming-movies' element={<UpcomingMovies/>}/>
             <Route path='/contact' element={<Contact/>}/>
+            <Route path='/details' element={<DetailsPage/>}/>
         </Routes>
     );
 

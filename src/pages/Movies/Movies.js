@@ -1,5 +1,5 @@
 import styles from './Movies.module.css';
-import InnerPage from "../../components/blocks/inner-page/InnerPage";
+import InnerPage from "../../components/layout/inner-page/InnerPage";
 import QuickSearch from "../../components/quick-search/QuickSearch";
 import FilterTabs from '../../components/ui/filter-tabs/FilterTabs';
 import CardList from '../../components/card-list/CardList';

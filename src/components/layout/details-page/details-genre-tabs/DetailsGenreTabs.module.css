@@ -1,0 +1,23 @@
+.detailsGenreTabs {
+    margin-bottom: 42px;
+}
+
+    .detailsGenreTabs ul {
+        list-style: none;
+    }
+
+        .detailsGenreTabs li {
+            display: inline-block;
+            vertical-align: middle;
+            font: normal 400 16px/1 var(--font-secondary);
+            text-transform: uppercase;
+            color: #fff;
+            letter-spacing: .1em;
+            background-color: var(--color-primary);
+            margin-right: 14px;
+            padding: 13.5px 41.5px;
+        }
+
+        .detailsGenreTabs li:last-child {
+            margin-right: 0;
+        }

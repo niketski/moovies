@@ -1,0 +1,21 @@
+.relatedMovies { 
+    padding: 60px 0;
+}
+
+    .relatedMovies h2 {
+        font: normal 400 40px/1 var(--font-secondary);
+        letter-spacing: .050em;
+        color: #fff;
+        text-transform: uppercase;
+        margin-bottom: 42px;
+    }
+
+    .relatedMoviesList {
+        display: flex;
+        margin: 0 -12.5px;
+    }
+
+        .relatedMoviesCard {
+            width: calc(100% / 4);
+            padding: 0 12.5px;
+        }
