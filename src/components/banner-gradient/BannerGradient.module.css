@@ -40,3 +40,10 @@
         height: 100%;
         object-fit: cover;
     }
+
+@media (max-width: 767px) {
+
+    .bannerGradient canvas {
+        min-height: 200px;
+    }
+}

@@ -21,3 +21,11 @@
         .detailsGenreTabs li:last-child {
             margin-right: 0;
         }
+
+@media (max-width: 991px) {
+
+    .detailsGenreTabs li {
+        padding: 9.5px 20.5px;
+        font-size: 12px;
+    }
+}

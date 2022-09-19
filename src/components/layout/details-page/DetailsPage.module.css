@@ -46,3 +46,34 @@
     padding-top: 35px;
 }
 
+@media (max-width: 991px) {
+    .detailsPageMain {
+        display: block;
+        padding-top: 60px;
+    }
+
+    .detailsPageMainLeft {
+        width: 100%;
+        max-width: 249px;
+        margin: 0 auto 30px;
+    }
+
+    .detailsPageMainRight {
+        width: 100%;
+        padding-left: 0;
+    }
+
+    .detailsPageMainContent {
+        text-align: center;
+    }
+
+    .detailsPageMainContent h1 {
+        font-size: 45px;
+    }
+
+    .detailsPageMainContent p {
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
+

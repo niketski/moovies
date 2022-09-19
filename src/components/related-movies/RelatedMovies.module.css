@@ -11,11 +11,18 @@
     }
 
     .relatedMoviesList {
-        display: flex;
         margin: 0 -12.5px;
     }
 
         .relatedMoviesCard {
-            width: calc(100% / 4);
+            width: 100%;
             padding: 0 12.5px;
         }
+
+@media (max-width: 767px) {
+
+    .relatedMoviesList {
+        margin: 0 auto;
+        max-width: 280px;
+    }
+}

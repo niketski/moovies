@@ -18,3 +18,9 @@
             color: #fff;
             font-family: var(--font-primary);
         }
+
+@media (max-width: 991px) {
+    .detailsMeta li {
+        font-size: 13px;
+    }
+}

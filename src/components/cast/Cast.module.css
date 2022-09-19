@@ -12,6 +12,7 @@
 
     .castList {
         display: flex;
+        flex-wrap: wrap;
         margin: 0 -20px;
     }
 
@@ -55,3 +56,35 @@
                     font-size: 12px;
                     letter-spacing: .050em;
                 }
+
+@media (max-width: 991px) {
+
+    .castItem {
+        width: calc(100% / 4);
+    }
+
+}
+
+@media (max-width: 767px) { 
+
+    .castItem {
+        width: calc(100% / 3);
+    }
+
+}
+
+@media (max-width: 480px) { 
+
+    .cast h2 {
+        font-size: 28px;
+    }
+
+    .castItem {
+        width: 50%;
+        padding: 10px;
+    }
+
+    .castList {
+        margin: 0 -10px;
+    }
+}
