@@ -1,5 +1,7 @@
 import styles from './FeaturedMovies.module.css';
 import Slider from 'react-slick';
+import { useContext } from 'react';
+import { MovieApiContext } from '../../context/MovieApiContext';
 
 import Section from '../ui/section/Section';
 import Button from '../ui/button/Button';
@@ -8,7 +10,13 @@ import featuredImg from '../../assets/images/featured-img.jpg';
 import FeaturedCard from '../featured-card/FeaturedCard';
 import { Link } from 'react-router-dom';
 
+import TMDBApi from '../../api/tmdb-api';
+const movieApi = new TMDBApi;
+
 const FeaturedMovies = props => {
+    const movieApiCtx  = useContext(MovieApiContext);
+    const latestMovies = movieApiCtx.movies ?  movieApiCtx.movies : null;
+
     const slickSettings = {
         dots: false,
         infinite: true,
@@ -52,36 +60,22 @@ const FeaturedMovies = props => {
                     <div className={styles.FmRight}>
                         <div className={styles.FmList}>
                             <Slider {...slickSettings}>
-                                <FeaturedCard
-                                    className={styles.FeaturedMoviesCard}
-                                    link="/"
-                                    featuredImage={featuredImg}
-                                    title="Thor: Love and Thunder"
-                                />
-                                <FeaturedCard
-                                    className={styles.FeaturedMoviesCard}
-                                    link="/"
-                                    featuredImage={featuredImg}
-                                    title="Thor: Love and Thunder"
-                                />
-                                <FeaturedCard
-                                    className={styles.FeaturedMoviesCard}
-                                    link="/"
-                                    featuredImage={featuredImg}
-                                    title="Thor: Love and Thunder"
-                                />
-                                <FeaturedCard
-                                    className={styles.FeaturedMoviesCard}
-                                    link="/"
-                                    featuredImage={featuredImg}
-                                    title="Thor: Love and Thunder"
-                                />
-                                <FeaturedCard
-                                    className={styles.FeaturedMoviesCard}
-                                    link="/"
-                                    featuredImage={featuredImg}
-                                    title="Thor: Love and Thunder"
-                                />
+
+                                {latestMovies && latestMovies.map(movie => {
+                                    const imagePoster = movieApi.getImagePosterUrl(movie.poster_path);
+
+                                    return (
+                                        <FeaturedCard
+                                            key={movie.id}
+                                            className={styles.FeaturedMoviesCard}
+                                            link={`/details/${movie.id}`}
+                                            featuredImage={imagePoster}
+                                            title={movie.title}
+                                        />
+                                    );
+
+                                })}
+                               
                             </Slider>
                         </div>
                     </div>

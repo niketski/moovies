@@ -3,6 +3,7 @@ import Button from '../ui/button/Button';
 import Section from '../ui/section/Section';
 
 const Hero = props => {
+
     return (
         <Section className={styles.SectionHero}>
             <div className={styles.heroInner}>

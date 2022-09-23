@@ -1,5 +1,6 @@
 import styles from './FeaturedTv.module.css';
 import Slider from 'react-slick';
+import { useState, useEffect } from 'react';
 
 import Section from '../ui/section/Section';
 import SectionTitle from '../section-title/SectionTitle';
@@ -8,7 +9,18 @@ import featuredImg from '../../assets/images/featured-img.jpg';
 import FeaturedCard from '../featured-card/FeaturedCard';
 import { Link } from 'react-router-dom';
 
+import TMDBApi from '../../api/tmdb-api';
+const movieApi = new TMDBApi;
+
 const FeaturedTv = props => {
+    const [tvSeries, setTvSeries] = useState([]);
+    const fetchTvSeries = async () => {
+        const response = await movieApi.getTvSeries();
+        const data     = await response.json();
+
+        setTvSeries(data.results);
+
+    };
     const slickSettings = {
         dots: false,
         infinite: true,
@@ -38,6 +50,12 @@ const FeaturedTv = props => {
         ]
     };
 
+    useEffect(() => {
+
+        fetchTvSeries();
+
+    }, []);
+
     return (
         <Section className={styles.SectionFeaturedTv}>
             <div className='site-wrapper'>
@@ -52,36 +70,22 @@ const FeaturedTv = props => {
                     <div className={styles.FTvLeft}>
                         <div className={styles.FTvList}>
                         <Slider {...slickSettings}>
-                            <FeaturedCard
-                                className={styles.FeaturedMoviesCard}
-                                link="/"
-                                featuredImage={featuredImg}
-                                title="Thor: Love and Thunder"
-                            />
-                            <FeaturedCard
-                                className={styles.FeaturedMoviesCard}
-                                link="/"
-                                featuredImage={featuredImg}
-                                title="Thor: Love and Thunder"
-                            />
-                            <FeaturedCard
-                                className={styles.FeaturedMoviesCard}
-                                link="/"
-                                featuredImage={featuredImg}
-                                title="Thor: Love and Thunder"
-                            />
-                            <FeaturedCard
-                                className={styles.FeaturedMoviesCard}
-                                link="/"
-                                featuredImage={featuredImg}
-                                title="Thor: Love and Thunder"
-                            />
-                            <FeaturedCard
-                                className={styles.FeaturedMoviesCard}
-                                link="/"
-                                featuredImage={featuredImg}
-                                title="Thor: Love and Thunder"
-                            />
+
+                            {tvSeries && tvSeries.map(tv => {
+                                const imagePoster = movieApi.getImagePosterUrl(tv.poster_path);
+
+                                return (
+                                    <FeaturedCard
+                                        key={tv.id}
+                                        className={styles.FeaturedMoviesCard}
+                                        link={`/details/${tv.id}`}
+                                        featuredImage={imagePoster}
+                                        title={tv.name}
+                                    />
+                                );
+
+                            })}
+                           
                         </Slider>
                         </div>
                     </div>
