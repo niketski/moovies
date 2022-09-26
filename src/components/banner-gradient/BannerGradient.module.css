@@ -29,6 +29,7 @@
     .bannerGradient canvas {
         display: block;
         width: 100%;
+        background-color: gray;
     }
 
     .bannerGradient img {

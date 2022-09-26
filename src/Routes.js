@@ -19,7 +19,7 @@ const MainRoutes = () => {
             <Route path='/genres' element={<Genres/>}/>
             <Route path='/upcoming-movies' element={<UpcomingMovies/>}/>
             <Route path='/contact' element={<Contact/>}/>
-            <Route path='/details' element={<DetailsPage/>}/>
+            <Route path='/details/:type/:id' element={<DetailsPage/>}/>
         </Routes>
     );
 

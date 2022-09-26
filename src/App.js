@@ -10,14 +10,13 @@ const movieApi = new TMDBApi();
 const { movieType } = apiConfig;
 
 function App() {
-  const DOMLoadedCtx    = useContext(DOMLoadedContext);
-  let currentPageClass  = DOMLoadedCtx.currentPageClass;
-  let wrapperPaddingTop = DOMLoadedCtx.wrapperPaddingTop;
+  const DOMLoadedCtx        = useContext(DOMLoadedContext);
+  let url                   = DOMLoadedCtx.currentUrl;
+  let wrapperPaddingTop     = DOMLoadedCtx.wrapperPaddingTop;
   const [movies, setMovies] = useState(null);
-  const [num, setNum] = useState(1);
-  // const [currentVideo, setCurrentVideo] = useEffect(null);
+  const [num, setNum]       = useState(1);
 
-  if(currentPageClass === 'details') {
+  if(url.includes('details')) {
 
     wrapperPaddingTop = 0;
 
@@ -38,7 +37,7 @@ function App() {
 
       setMovies(data.results);
       setNum(2)
-      console.log(data);
+      // console.log(data);
     };
 
     getMovies();
@@ -66,15 +65,15 @@ function App() {
     //     console.log(data);
     //   })
 
-      console.log(movies);
-      console.log(num);
+      // console.log(movies);
+      // console.log(num);
 
   }, [num]);
 
   // useEffect(() => {}, [currentVideo])
 
   return (
-    <div className={`mainWrapper ${currentPageClass === '' ? 'home' : currentPageClass}`} style={{ paddingTop: `${wrapperPaddingTop}px` }}>
+    <div className={`mainWrapper`} style={{ paddingTop: `${wrapperPaddingTop}px` }}>
 
       <Header/>
       <MainRoutes/>

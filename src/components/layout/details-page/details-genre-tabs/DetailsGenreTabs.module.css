@@ -14,7 +14,7 @@
             color: #fff;
             letter-spacing: .1em;
             background-color: var(--color-primary);
-            margin-right: 14px;
+            margin: 0 14px 14px 0;
             padding: 13.5px 41.5px;
         }
 

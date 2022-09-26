@@ -1,11 +1,15 @@
 import styles from './DetailsGenreTabs.module.css';
 
 const DetailsGenreTabs = props => {
+   
     return (
         <div className={styles.detailsGenreTabs}>
             <ul>
-                <li>Fantasy</li>
-                <li>Drama</li>
+                {props.genres.map((genre, index) => {
+                    return (
+                        <li key={index}>{genre}</li>
+                    );
+                })}
             </ul>
         </div>
     );

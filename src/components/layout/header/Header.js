@@ -34,10 +34,6 @@ const Header = () => {
         
         DOMLoadedCtx.setWrapperPaddingTop(headerRef.current.offsetHeight);
 
-        
-        
-        console.log(headerHeight);
-
     }, [headerHeight]);
     
     window.addEventListener('resize', handleResize);

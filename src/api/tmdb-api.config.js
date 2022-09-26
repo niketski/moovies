@@ -13,7 +13,7 @@ const apiConfig = {
         small: 'w300',
         medium: 'w780',
         large: 'w1280',
-        original: 'orignial'
+        original: 'original'
     },
     movieType: {
         popular: 'popular',

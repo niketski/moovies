@@ -2,8 +2,11 @@ import styles from './RelatedMovies.module.css';
 import FeaturedCard from '../featured-card/FeaturedCard';
 import featuredImg from '../../assets/images/featured-img.jpg';
 import Slider from 'react-slick';
+import TMDBApi from '../../api/tmdb-api';
+const movieApi = new TMDBApi;
 
 const RelatedMovies = props => {
+    const similarList = props.similarList;
     const slickSettings = {
         dots: false,
         infinite: true,
@@ -38,30 +41,20 @@ const RelatedMovies = props => {
             <h2>You May Also Like</h2>
             <div className={styles.relatedMoviesList}>
                 <Slider {...slickSettings}>
-                    <FeaturedCard
-                        className={styles.relatedMoviesCard}
-                        link="/"
-                        featuredImage={featuredImg}
-                        title="Thor: Love and Thunder"
-                    />
-                    <FeaturedCard
-                        className={styles.relatedMoviesCard}
-                        link="/"
-                        featuredImage={featuredImg}
-                        title="Thor: Love and Thunder"
-                    />
-                    <FeaturedCard
-                        className={styles.relatedMoviesCard}
-                        link="/"
-                        featuredImage={featuredImg}
-                        title="Thor: Love and Thunder"
-                    />
-                    <FeaturedCard
-                        className={styles.relatedMoviesCard}
-                        link="/"
-                        featuredImage={featuredImg}
-                        title="Thor: Love and Thunder"
-                    />
+
+                    {similarList.map((similarItem, index) => {
+
+                        return (
+                            <FeaturedCard
+                                key={index}
+                                className={styles.relatedMoviesCard}
+                                link={similarItem.link}
+                                featuredImage={similarItem.image}
+                                title={similarItem.name}
+                            />
+                        );
+
+                    })}
                 </Slider>
             </div>
         </div>

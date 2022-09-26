@@ -48,7 +48,7 @@
 
                 .castDetails h3 {
                     font: normal 400 16px/1 var(--font-secondary);
-                    letter-spacing: .050em;
+                    letter-spacing: .1em;
                     margin-bottom: 12px;
                 }
 

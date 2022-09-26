@@ -9,10 +9,27 @@ class TMDBApi {
 
     }
 
+    getSimilar(type, id) {
+
+        return fetch(`${baseUrl}/${type}/${id}/similar?${urlSuffix}`)
+
+    }
+
     getTvSeries(type = 'popular') {
 
         return fetch(`${baseUrl}/tv/${type}?${urlSuffix}`);
 
+    }
+
+    getDetails(type, id) {
+
+        return fetch(`${baseUrl}/${type}/${id}?${urlSuffix}`);
+
+    }
+
+    getCasts(type, id) {
+        
+        return fetch(`${baseUrl}/${type}/${id}/credits?${urlSuffix}`);
     }
 
     getMovieVideos(movie_id) {

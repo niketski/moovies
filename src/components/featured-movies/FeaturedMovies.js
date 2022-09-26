@@ -68,7 +68,7 @@ const FeaturedMovies = props => {
                                         <FeaturedCard
                                             key={movie.id}
                                             className={styles.FeaturedMoviesCard}
-                                            link={`/details/${movie.id}`}
+                                            link={`/details/movie/${movie.id}`}
                                             featuredImage={imagePoster}
                                             title={movie.title}
                                         />

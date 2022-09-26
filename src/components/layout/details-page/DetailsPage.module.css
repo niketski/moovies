@@ -3,6 +3,10 @@
     padding-bottom: 100px;
 }
 
+    .detailsBanner img {
+        object-position: top center;
+    }
+
     .detailsPageMain {
         display: flex;
         margin-bottom: 50px;

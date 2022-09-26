@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 
 const initialState = {
     wrapperPaddingTop: 0,
-    currentPageClass: '',
+    currentUrl: '',
     setWrapperPaddingTop: () => {}
 };
 
@@ -14,9 +14,7 @@ export const DOMLoadedContext = createContext(initialState);
 const DOMLoadedContextProvider = props => {
     const location                    = useLocation();
     const currentPath                 = location.pathname;
-    const paths                       = location.pathname.split('/');
-    let currentPathLastIndex          = paths[paths.length - 1];
-    const [pageClass, setPageClass]   = useState('');
+    const [currentUrl, setCurrentUrl]   = useState('');
     const [paddingTop, setPaddingTop] = useState(0);
 
     const setWrapperPaddingTop = paddingTop => {
@@ -25,15 +23,9 @@ const DOMLoadedContextProvider = props => {
 
     };
 
-    const setPageClassHandler = pageClass => {
-
-        setPageClass(pageClass);
-
-    };
-
     useEffect(() => {
     
-        setPageClass(currentPathLastIndex);
+        setCurrentUrl(currentPath);
 
     }, [currentPath]);
 
@@ -42,7 +34,7 @@ const DOMLoadedContextProvider = props => {
     const values = {
         wrapperPaddingTop: paddingTop,
         setWrapperPaddingTop: setWrapperPaddingTop,
-        currentPageClass: pageClass,
+        currentUrl: currentUrl,
     };
 
     return (
