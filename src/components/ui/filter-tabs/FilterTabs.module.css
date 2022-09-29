@@ -11,9 +11,14 @@
 }
 
     .filterTabs a {
-        margin-right: 15px;
+        margin: 0 15px 15px 0;
     }
 
     .filterTabs a:last-child {
         margin-right: 0;
+    }
+
+    .activeTab {
+        background-color: var(--color-secondary);
+        box-shadow: 0 0 8px 2px #000;
     }

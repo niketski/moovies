@@ -1,0 +1,21 @@
+.spinnerHolder {
+    padding: 20px 0;
+    text-align: center;
+}
+
+.spinner {
+    /* animation: spin infinite 2s linear; */
+    font-size: 45px;
+    color: var(--color-primary);
+    /*You can increase or decrease the timer (5s) to 
+     increase or decrease the speed of the spinner*/
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

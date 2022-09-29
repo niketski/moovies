@@ -27,6 +27,18 @@ class TMDBApi {
 
     }
 
+    getGenre(type) {
+        
+        return fetch(`${baseUrl}/genre/${type}/list?${urlSuffix}`);
+
+    }
+
+    getByGenre(type, genreIds) {
+
+        return fetch(`${apiConfig.baseUrl}/discover/${type}?${apiConfig.urlSuffix}&with_genres=${genreIds}`);
+
+    }
+
     getCasts(type, id) {
         
         return fetch(`${baseUrl}/${type}/${id}/credits?${urlSuffix}`);

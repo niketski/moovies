@@ -22,15 +22,23 @@ const FilterTabs = props => {
             alignClass = '';
 
     }
+    
 
     return (
         <div className={`${styles.filterTabs} ${props.className ? props.className : ''} ${alignClass}`}>
-            <Button to="/">Fantasy</Button>
-            <Button to="/">Drama</Button>
-            <Button to="/">Romance</Button>
-            <Button to="/">Action</Button>
-            <Button to="/">Horror</Button>
-            <Button to="/">Suspense</Button>
+            {props.tabs.map((tab, index) => {
+                return (
+
+                    <Button 
+                        onClick={props.clickHandler ? (e) => { e.preventDefault();  props.clickHandler(tab.id); } : null } 
+                        key={index} 
+                        className={props.activeTabs.includes(tab.id) ? styles.activeTab : null}
+                        to="/">
+                            {tab.name}
+                    </Button>
+
+                );
+            })}
         </div>
     );
 };

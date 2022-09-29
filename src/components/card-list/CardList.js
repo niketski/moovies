@@ -5,141 +5,20 @@ import featuredImg from '../../assets/images/featured-img.jpg'
 const CardList = props => {
     return (
         <div className={`${styles.cardList} ${props.className ? props.className : ''}`}>
-            <FeaturedCard
-                width="209"
-                height="282"
-                className={styles.cardListCard}
-                link="/"
-                featuredImage={featuredImg}
-                title="Thor: Love and Thunder"
-                details="2022 . Horror | Drama"
-            />
-            <FeaturedCard
-                width="209"
-                height="282"
-                className={styles.cardListCard}
-                link="/"
-                featuredImage={featuredImg}
-                title="Thor: Love and Thunder"
-                details="2022 . Horror | Drama"
-            />
-            <FeaturedCard
-                width="209"
-                height="282"
-                className={styles.cardListCard}
-                link="/"
-                featuredImage={featuredImg}
-                title="Thor: Love and Thunder"
-                details="2022 . Horror | Drama"
-            />
-            <FeaturedCard
-                width="209"
-                height="282"
-                className={styles.cardListCard}
-                link="/"
-                featuredImage={featuredImg}
-                title="Thor: Love and Thunder"
-                details="2022 . Horror | Drama"
-            />
-            <FeaturedCard
-                width="209"
-                height="282"
-                className={styles.cardListCard}
-                link="/"
-                featuredImage={featuredImg}
-                title="Thor: Love and Thunder"
-                details="2022 . Horror | Drama"
-            />
-            <FeaturedCard
-                width="209"
-                height="282"
-                className={styles.cardListCard}
-                link="/"
-                featuredImage={featuredImg}
-                title="Thor: Love and Thunder"
-                details="2022 . Horror | Drama"
-            />
-            <FeaturedCard
-                width="209"
-                height="282"
-                className={styles.cardListCard}
-                link="/"
-                featuredImage={featuredImg}
-                title="Thor: Love and Thunder"
-                details="2022 . Horror | Drama"
-            />
-            <FeaturedCard
-                width="209"
-                height="282"
-                className={styles.cardListCard}
-                link="/"
-                featuredImage={featuredImg}
-                title="Thor: Love and Thunder"
-                details="2022 . Horror | Drama"
-            />
-            <FeaturedCard
-                width="209"
-                height="282"
-                className={styles.cardListCard}
-                link="/"
-                featuredImage={featuredImg}
-                title="Thor: Love and Thunder"
-                details="2022 . Horror | Drama"
-            />
-            <FeaturedCard
-                width="209"
-                height="282"
-                className={styles.cardListCard}
-                link="/"
-                featuredImage={featuredImg}
-                title="Thor: Love and Thunder"
-                details="2022 . Horror | Drama"
-            />
-            <FeaturedCard
-                width="209"
-                height="282"
-                className={styles.cardListCard}
-                link="/"
-                featuredImage={featuredImg}
-                title="Thor: Love and Thunder"
-                details="2022 . Horror | Drama"
-            />
-            <FeaturedCard
-                width="209"
-                height="282"
-                className={styles.cardListCard}
-                link="/"
-                featuredImage={featuredImg}
-                title="Thor: Love and Thunder"
-                details="2022 . Horror | Drama"
-            />
-            <FeaturedCard
-                width="209"
-                height="282"
-                className={styles.cardListCard}
-                link="/"
-                featuredImage={featuredImg}
-                title="Thor: Love and Thunder"
-                details="2022 . Horror | Drama"
-            />
-            <FeaturedCard
-                width="209"
-                height="282"
-                className={styles.cardListCard}
-                link="/"
-                featuredImage={featuredImg}
-                title="Thor: Love and Thunder"
-                details="2022 . Horror | Drama"
-            />
-            <FeaturedCard
-                width="209"
-                height="282"
-                className={styles.cardListCard}
-                link="/"
-                featuredImage={featuredImg}
-                title="Thor: Love and Thunder"
-                details="2022 . Horror | Drama"
-            />
+            {props.cards.map((card, index) => {
+                return (
+                    <FeaturedCard
+                        key={index}
+                        width="209"
+                        height="282"
+                        className={styles.cardListCard}
+                        link={card.link}
+                        featuredImage={card.featuredImage}
+                        title={card.title}
+                        details={card.details}
+                    />
+                );
+            })}
         </div>
     );
 };
