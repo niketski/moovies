@@ -6,16 +6,29 @@ const initialState = {
     isLoading: true,
     selectedGenre: [],
     selectGenre: () => {},
+    updateList: () => {},
+    updateGenres: () => {},
 };
 
 // Context
 export const ListingContext = createContext(initialState);
 
 // Context Provider
-export default ListingContextProvider = props => {
+const ListingContextProvider = props => {
     const [list, setList]   = useState([]);
-    const [genres, setGenre] = useState([]);
+    const [genres, setGenres] = useState([]);
+    const [isLoading, setIsloading] = useState(true);
     const [selectedGenres, setSelectedGenres] = useState([]);
+
+    const handleToggleLoading = isLoading => {
+        setIsloading(isLoading);
+    };
+
+    const handleListUpdate = list => {
+
+        setList(list);
+
+    };
 
     const handleSelectGenre = id => {
         
@@ -37,18 +50,21 @@ export default ListingContextProvider = props => {
         
     };
 
-    const handleUpdateType = type => {
+    const handleGenresUpdate = genres => {
 
-        setType(type);
+        setGenres(genres);
 
     };
 
     const values = {
-        list,
         genres,
+        list,
         isLoading,
         selectedGenres,
-        selectGenre:  handleSelectGenre,
+        selectGenre: handleSelectGenre,
+        updateList: handleListUpdate,
+        updateGenres: handleGenresUpdate,
+        toggleLoading: handleToggleLoading
     }; 
 
     return (
@@ -57,3 +73,5 @@ export default ListingContextProvider = props => {
         </ListingContext.Provider>
     );
 };
+
+export default ListingContextProvider;

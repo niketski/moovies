@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import DOMLoadedContextProvider from './context/DOMLoadedContext';
 import BurgerMenuContextProvider from './context/BurgerMenuContext';
 import MovieApiContextProvider from './context/MovieApiContext';
+import ListingContextProvider from './context/ListingContext';
 import './assets/vendor/css/slick.css';
 import './assets/vendor/css/slick-theme.css';
 import './fonts.css';
@@ -14,11 +15,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <DOMLoadedContextProvider>
-    <BurgerMenuContextProvider>
-      <MovieApiContextProvider>
-        <App />
-      </MovieApiContextProvider>
-    </BurgerMenuContextProvider>
+      <BurgerMenuContextProvider>
+        <MovieApiContextProvider>
+          <ListingContextProvider>
+            <App />
+          </ListingContextProvider>
+        </MovieApiContextProvider>
+      </BurgerMenuContextProvider>
     </DOMLoadedContextProvider>
   </BrowserRouter>
 );

@@ -1,24 +1,34 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import useListing from '../../hooks/listing';
 import styles from './Movies.module.css';
+
 import InnerPage from "../../components/layout/inner-page/InnerPage";
 import QuickSearch from "../../components/quick-search/QuickSearch";
 import FilterTabs from '../../components/ui/filter-tabs/FilterTabs';
 import CardList from '../../components/card-list/CardList';
 import Pagination from '../../components/pagination/Pagination';
 import Spinner from '../../components/ui/spinner/Spinner';
-import moviePlaceholder from '../../assets/images/movie-placeholder.jpg'
 
+import moviePlaceholder from '../../assets/images/movie-placeholder.jpg';
 import TMDBApi from '../../api/tmdb-api';
 import apiConfig from '../../api/tmdb-api.config';
+
+import { ListingContext } from '../../context/ListingContext';
+
 const movieApi = new TMDBApi;
 
 const Movies = () => {
+    const listingCtx = useContext(ListingContext);
+    const moviesList = listingCtx.list;
+    const updateMoviesList = listingCtx.updateList;
     const [movies, setMovies]               = useState(null);
     const [genres, setGenres]               = useState(null);
     const [isLoading, setIsLoading]         = useState(true);
     const [selectedGenre, setSelectedGenre] = useState([]);
     let cardsList = null;
+    const { data, dataIsLoading, dataError } = useListing();
 
+    console.log(dataError);
     const fetchMovies = async () => {
         const response = await movieApi.getMovies();
         const data     = await response.json();
@@ -37,9 +47,10 @@ const Movies = () => {
             };
         });
 
-        console.log(data);
+        updateMoviesList(moviesList);
 
         setMovies(moviesList);
+        
         setIsLoading(false);
     };
 
@@ -81,8 +92,8 @@ const Movies = () => {
             }); 
 
             // console.log(genres);
-            console.log(data);
-            console.log(data.release_date);
+            // console.log(data);
+            // console.log(data.release_date);
             return {
                 featuredImage: poster,
                 title: data.title,
@@ -98,7 +109,6 @@ const Movies = () => {
     useEffect(() => {
 
         setIsLoading(true);
-
         fetchMovies();
         fetchGenres();
 

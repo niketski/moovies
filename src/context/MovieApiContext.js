@@ -19,7 +19,6 @@ const MovieApiContextProvider = props => {
         const data     = await response.json();
 
         setMovies(data.results);
-        console.log('conetxt');
     };
 
     useEffect(() => {
