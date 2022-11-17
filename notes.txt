@@ -1,0 +1,5 @@
+Listing hooks functionality
+1. fetch data
+2. filter data based on genre
+3. keyword search
+4. pagination
