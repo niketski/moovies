@@ -1,20 +1,19 @@
-import { useReducer, useEffect } from "react";
-
+import { useEffect, useReducer } from "react";
 import apiConfig from "../api/tmdb-api.config";
 import TMDBApi from "../api/tmdb-api";
 
-const {baseUrl, apiKey, imageBaseUrl, urlSuffix} = apiConfig;
-const tmdbApi = new TMDBApi();
+// initialize
+const tmdbApiInstance = new TMDBApi();
 
 const initialState = {
-    data: [],
-    dataIsLoading: false,
+    data: null,
+    isLoading: false,
     errorMessage: null,
-    genres: [],
-    genreIsLoading: false,
+    genres: null,
+    isLoadingGenre: false,
+    genreErrorMessage: null,
     activeGenres: [],
-    fetchData: () => {},
-    updateActiveGenres: () => {},
+    errorType: null,
 };
 
 const listingReducer = (currentState, action) => {
@@ -25,156 +24,175 @@ const listingReducer = (currentState, action) => {
 
             return {
                 ...currentState,
+                isLoading: true,
+                errorMessage: null,
                 data: null,
-                dataIsLoading: true,
-            };
+            }
 
         case 'DATA_RESPONSE':
 
             return {
                 ...currentState,
-                dataIsLoading: false,
+                isLoading: false,
                 data: action.data,
-                errorMessage: null
+                errorMessage: null,
+                errorType: null
             }
 
-        case 'ERROR':
-
-            let returnData = {
-                ...currentState,
-                dataIsLoading: false,
-                data: null,
-                errorMessage: action.errorMessage
-            };
-
-            if(action.errorType === 'genre') {
-
-                returnData = {
-                    ...currentState,
-                    genreIsLoading: false,
-                    genres: null,
-                    errorMessage: action.errorMessage
-                };
-            }
-
-            return returnData;
-
-        case 'DATA_UPDATE':
+        case 'FETCH_GENRES':
 
             return {
                 ...currentState,
-                data: action.data
-            }
-
-        case 'FETCH_GENRE':
-
-            return {
-                ...currentState,
+                isLoadingGenre: true,
                 genres: null,
-                activeGenres: null,
-                genreIsLoading: true,
+                activegenres: null,
+                genreErrorMessage: null,
             }
 
         case 'GENRE_RESPONSE':
 
             return {
                 ...currentState,
+                isLoadingGenre: false,
                 genres: action.genres,
-                genreIsLoading: false,
-                errorMessage: null,
+                errorType: null
+            }
+
+        case 'DATA_ERROR':
+
+            return {
+                ...currentState,
+                isLoading: false,
+                errorType: 'data',
+                errorMessage: action.errorMessage,
+
             }
 
         case 'GENRE_ERROR':
 
             return {
                 ...currentState,
-                genreIsLoading: false,
-                genre: null,
-                errorMessage: action.errorMessage
+                isLoadingGenre: false,
+                errorType: 'genre',
+                genreErrorMessage: action.errorMessage
+            }
+
+        case 'UPDATE_ACTIVE_GENRE':
+
+            const id = action.genreId;
+            const isSelected = currentState.activeGenres.includes(id);
+            let currentGenres = [...currentState.activeGenres];
+
+            if(isSelected) {
+
+                currentGenres = currentGenres.filter(currentId => currentId != id);
+
+                return {
+                    ...currentState,
+                    activeGenres: currentGenres,
+                }
+            }
+            
+            currentGenres.push(id);
+            
+            return {
+                ...currentState,
+                activeGenres: currentGenres
             }
     }
-
 };
 
-const useListing = (type = 'tv') => {
-    const [listingState, dispatch] = useReducer(listingReducer, initialState);
-    const listingType = type;
-    let currentUrl = `${baseUrl}/${listingType}/popular/?${urlSuffix}`;
+const useListing = (listingType = 'movie') => {
+    const [state, dispatch] = useReducer(listingReducer, initialState);
 
-    const fetchData = async url => {
 
-        dispatch({
-            type: 'FETCH_DATA'
-        });
-
-        const response = await fetch(url + 'qeqweqw');
+    const fetchData = async genres => {
     
-        
-        if(!response.ok) {
+        dispatch({ type: 'FETCH_DATA' });
 
-            dispatch({
-                type: 'ERROR',
-                errorType: 'data',
-                errorMessage: 'Data: Something went wrong!'
-            });
+        // fetch tv series data
+        if(listingType === 'tv') {
+            const response = genres.length ? await tmdbApiInstance.getByGenre(listingType, genres.join(',')) : await tmdbApiInstance.getTvSeries();
 
-            console.log('error');
+            if(!response.ok) {
+                const message = `An error has occured: ${response.status}`;
+                throw new Error(message);
+            }
+
+            const data     = await response.json();
+
+            dispatch({ type: 'DATA_RESPONSE', data: data.results});
 
             return;
         }
-
-        const data = await response.json();
-
-        dispatch({
-            type: 'DATA_RESPONSE',
-            data: data.results
-        });
     
-    };
+        // fetch movies data
+        const response = genres.length ? await tmdbApiInstance.getByGenre(listingType, genres.join(',')) : await tmdbApiInstance.getMovies();
 
-    const fetchGenres = async (type = 'movie') => {
-        
-        dispatch({
-            type: 'FETCH_GENRE'
-        });
-
-        const response = await fetch(`${baseUrl}/genre/${type}/list?${urlSuffix}`);
-        
         if(!response.ok) {
-
-            dispatch({
-                type: 'ERROR',
-                errorType: 'genre',
-                errorMessage: 'Genre: Something went wrong!'
-            });
-
-            console.log('error');
-
-            return;
+            const message = `An error has occured: ${response.status}`;
+            throw new Error(message);
         }
 
-        const data = await response.json();
+        const data     = await response.json();
 
-        dispatch({
-            type: 'GENRE_RESPONSE',
-            genres: data.genres
-        });
+        dispatch({ type: 'DATA_RESPONSE', data: data.results});
         
     };
-    
+
+    const fetchGenres = async () => {
+
+        dispatch({ type: 'FETCH_GENRES' });
+
+        const response = await tmdbApiInstance.getGenre(listingType);
+
+        if(!response.ok) {
+            const message = `An error has occured: ${response.status}`;
+            throw new Error(message);
+        }
+
+        const data     = await response.json();
+
+        dispatch({ type: 'GENRE_RESPONSE', genres: data.genres }); 
+    };
+
+    const updateActiveGenres = id => {
+
+        dispatch({ type: 'UPDATE_ACTIVE_GENRE', genreId: id })
+    };
 
     useEffect(() => {
 
-        fetchData(currentUrl);
-        fetchGenres(type);
+        fetchData(state.activeGenres)
+            .catch(error => {
+                dispatch({ type: 'DATA_ERROR', errorMessage: 'An error has occured fetching data.' });
+            });
 
-    }, []);
+    }, [state.activeGenres]);
+
+    useEffect(() => {
+
+        fetchGenres()
+            .catch(error => {
+                dispatch({ type: 'GENRE_ERROR', errorMessage: 'An error has occured fetching genres.' });
+            });
+            
+    }, [])
+
+
 
     return {
-        data: listingState.data,
-        dataIsLoading: listingState.dataIsLoading,
-        dataError: listingState.errorMessage
-    }
+        data: state.data,
+        isLoading: state.isLoading,
+        errorMessage: state.errorMessage,
+        genres: state.genres,
+        isLoadingGenre: state.isLoadingGenre,
+        genreErrorMessage: state.genreErrorMessage,
+        errorType: state.errorType,
+        activeGenres: state.activeGenres,
+        updateSelectedGenre: updateActiveGenres
+    };
+
 };
 
 export default useListing;

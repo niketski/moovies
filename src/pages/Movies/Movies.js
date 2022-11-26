@@ -12,131 +12,62 @@ import Spinner from '../../components/ui/spinner/Spinner';
 import moviePlaceholder from '../../assets/images/movie-placeholder.jpg';
 import TMDBApi from '../../api/tmdb-api';
 import apiConfig from '../../api/tmdb-api.config';
-
-import { ListingContext } from '../../context/ListingContext';
-
+import useListing from '../../hooks/listing';
 const movieApi = new TMDBApi;
 
 const Movies = () => {
-    const listingCtx = useContext(ListingContext);
-    const moviesList = listingCtx.list;
-    const updateMoviesList = listingCtx.updateList;
-    const [movies, setMovies]               = useState(null);
-    const [genres, setGenres]               = useState(null);
-    const [isLoading, setIsLoading]         = useState(true);
-    const [selectedGenre, setSelectedGenre] = useState([]);
-    let cardsList = null;
-    const { data, dataIsLoading, dataError } = useListing();
+    const {
+            data, 
+            isLoading: isLoadingData, 
+            errorMessage, 
+            genres: genreList,
+            isLoadingGenre,
+            errorType,
+            activeGenres,
+            updateSelectedGenre 
+        } = useListing();
+    
+    // format movies data
+    const movieFormat = data => {
 
-    console.log(dataError);
-    const fetchMovies = async () => {
-        const response = await movieApi.getMovies();
-        const data     = await response.json();
-        const moviesList = data.results.map(data => {
-            const poster  = data.poster_path ? movieApi.getImagePosterUrl(data.poster_path) : moviePlaceholder;
-            const year_released = data.release_date.split('-')[0];
-            const genres = data.genre_ids.map(genre => {
-                return apiConfig.genres[genre]
-            }); 
-
-            return {
-                featuredImage: poster,
-                title: data.title,
-                details: `${year_released} . ${genres.join(' | ')}`,
-                link: `/details/movie/${data.id}`
-            };
-        });
-
-        updateMoviesList(moviesList);
-
-        setMovies(moviesList);
-        
-        setIsLoading(false);
-    };
-
-    const fetchGenres = async () => {
-        const response = await movieApi.getGenre('movie');
-        const data     = await response.json();
-
-        setGenres(data.genres);
-    };
-
-    const handleFilterClick = id => {
-        
-        const isSelected    = selectedGenre.includes(id);
-        let currentGenres = [...selectedGenre];
-
-        if(isSelected) {
-
-            currentGenres = currentGenres.filter(currentId => currentId != id);
-
-            setSelectedGenre(currentGenres);
-            
-            return;
+        // dont continue if data is not available
+        if(!data) {
+            return false;
         }
 
-        currentGenres.push(id);
+        return data.map(movie => {
+            const poster        = movie.poster_path ? movieApi.getImagePosterUrl(movie.poster_path) : moviePlaceholder;
+            const year_released = movie.release_date.split('-')[0];
+            const genres        = movie.genre_ids.map(genre => {
+                                    return apiConfig.genres[genre]
+                                }); 
 
-        setSelectedGenre(currentGenres);
+            return {
+                        featuredImage: poster,
+                        title: data.title,
+                        details: `${year_released} . ${genres.join(' | ')}`,
+                        link: `/details/movie/${movie.id}`
+                    };
+        });
         
     };
 
-    const fetchMoviesByGenre = async () => {
-        const response = await movieApi.getByGenre('movie', selectedGenre.join(','));
-        const data     = await response.json();
-        const moviesList = data.results.map(data => {
-            const poster  = data.poster_path ? movieApi.getImagePosterUrl(data.poster_path) : moviePlaceholder;
-            const year_released = data.release_date ? data.release_date.split('-')[0] : '';
-            const genres = data.genre_ids.map(genre => {
-                return apiConfig.genres[genre]
-            }); 
-
-            // console.log(genres);
-            // console.log(data);
-            // console.log(data.release_date);
-            return {
-                featuredImage: poster,
-                title: data.title,
-                details: `${year_released } . ${genres.join(' | ')}`,
-                link: `/details/movie/${data.id}`
-            };
-        });
-
-        setMovies(moviesList);
-        setIsLoading(false);
-    };
-
-    useEffect(() => {
-
-        setIsLoading(true);
-        fetchMovies();
-        fetchGenres();
-
-    }, []);
-
-    useEffect(() => {
-
-        setIsLoading(true);
-        fetchMoviesByGenre();
-
-    }, [selectedGenre]);
-
-    
-
+    const movies = movieFormat(data);
+ 
     return (
         <InnerPage title="Movies">
             <QuickSearch className={styles.moviesQuickSearch}/>
 
-            {genres && <FilterTabs 
-                            clickHandler={handleFilterClick} 
+            {genreList && <FilterTabs 
+                            clickHandler={updateSelectedGenre} 
                             className={styles.moviesTabs} 
-                            tabs={genres} 
-                            activeTabs={selectedGenre}
+                            tabs={genreList} 
+                            activeTabs={activeGenres}
                             align="center"/>}
 
-            {isLoading && <Spinner/>}
+            {isLoadingData && <Spinner/>}
 
-            {(movies && !isLoading) && <CardList className={styles.moviesCardList} cards={movies}/>}
+            {(movies && !isLoadingData) && <CardList className={styles.moviesCardList} cards={movies}/>}
             
             <Pagination className={styles.moviesPagination}/>
         </InnerPage>
