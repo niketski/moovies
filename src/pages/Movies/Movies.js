@@ -12,7 +12,6 @@ import Spinner from '../../components/ui/spinner/Spinner';
 import moviePlaceholder from '../../assets/images/movie-placeholder.jpg';
 import TMDBApi from '../../api/tmdb-api';
 import apiConfig from '../../api/tmdb-api.config';
-import useListing from '../../hooks/listing';
 const movieApi = new TMDBApi;
 
 const Movies = () => {
