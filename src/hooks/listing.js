@@ -14,6 +14,7 @@ const initialState = {
     genreErrorMessage: null,
     activeGenres: [],
     errorType: null,
+    query: '',
 };
 
 const listingReducer = (currentState, action) => {
@@ -99,6 +100,15 @@ const listingReducer = (currentState, action) => {
                 ...currentState,
                 activeGenres: currentGenres
             }
+
+        case 'UPDATE_SEARCH':
+
+            return {
+                ...currentState,
+                activeGenres: [],
+                query: action.keyword
+            }
+
     }
 };
 
@@ -106,13 +116,30 @@ const useListing = (listingType = 'movie') => {
     const [state, dispatch] = useReducer(listingReducer, initialState);
 
 
-    const fetchData = async genres => {
+    const fetchData = async (genres, keyword) => {
     
         dispatch({ type: 'FETCH_DATA' });
 
+        let response; 
+
         // fetch tv series data
         if(listingType === 'tv') {
-            const response = genres.length ? await tmdbApiInstance.getByGenre(listingType, genres.join(',')) : await tmdbApiInstance.getTvSeries();
+
+            response = await tmdbApiInstance.getTvSeries();
+
+            if(keyword.length) { // fetch by search keyword
+
+                response = await tmdbApiInstance.search(state.query, listingType);
+    
+            } else if (genres.length) { // fetch by genre
+    
+                response = await tmdbApiInstance.getByGenre(listingType, genres.join(','));
+    
+            } else { // default fetch
+    
+                response = await tmdbApiInstance.getTvSeries();
+    
+            }
 
             if(!response.ok) {
                 const message = `An error has occured: ${response.status}`;
@@ -125,9 +152,23 @@ const useListing = (listingType = 'movie') => {
 
             return;
         }
-    
-        // fetch movies data
-        const response = genres.length ? await tmdbApiInstance.getByGenre(listingType, genres.join(',')) : await tmdbApiInstance.getMovies();
+
+
+         // fetch movies data
+
+        if(keyword.length) { // fetch by search keyword
+
+            response = await tmdbApiInstance.search(state.query, listingType);
+
+        } else if (genres.length) { // fetch by genre
+
+            response = await tmdbApiInstance.getByGenre(listingType, genres.join(','));
+
+        } else { // default fetch
+
+            response = await tmdbApiInstance.getMovies();
+
+        }
 
         if(!response.ok) {
             const message = `An error has occured: ${response.status}`;
@@ -161,14 +202,43 @@ const useListing = (listingType = 'movie') => {
         dispatch({ type: 'UPDATE_ACTIVE_GENRE', genreId: id })
     };
 
+    const updateSearchKeyword = keyword => {
+
+        dispatch({ type: 'UPDATE_SEARCH', keyword: keyword});
+    };
+
     useEffect(() => {
+        let timer;
 
-        fetchData(state.activeGenres)
-            .catch(error => {
-                dispatch({ type: 'DATA_ERROR', errorMessage: 'An error has occured fetching data.' });
-            });
+        // if(state.query.length) {
 
-    }, [state.activeGenres]);
+        //     timer = setTimeout(() => {
+
+        //         fetchData(state.activeGenres, state.query)
+        //             .catch(error => {
+        //                 dispatch({ type: 'DATA_ERROR', errorMessage: 'An error has occured fetching data.' });
+        //             });
+
+        //     }, 500);
+
+        // } else {
+
+        //     fetchData(state.activeGenres, state.query)
+        //         .catch(error => {
+        //             dispatch({ type: 'DATA_ERROR', errorMessage: 'An error has occured fetching data.' });
+        //         });
+        // }
+
+        fetchData(state.activeGenres, state.query)
+        .catch(error => {
+            dispatch({ type: 'DATA_ERROR', errorMessage: 'An error has occured fetching data.' });
+        });
+
+        return () => {
+            console.log('cleanup');
+        };
+
+    }, [state.activeGenres, state.query]);
 
     useEffect(() => {
 
@@ -190,7 +260,8 @@ const useListing = (listingType = 'movie') => {
         genreErrorMessage: state.genreErrorMessage,
         errorType: state.errorType,
         activeGenres: state.activeGenres,
-        updateSelectedGenre: updateActiveGenres
+        updateSelectedGenre: updateActiveGenres,
+        updateSearch: updateSearchKeyword
     };
 
 };

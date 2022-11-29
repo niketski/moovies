@@ -22,11 +22,12 @@ const TvSeries = () => {
             isLoadingGenre,
             errorType,
             activeGenres,
-            updateSelectedGenre 
+            updateSelectedGenre,
+            updateSearch 
         } = useListing('tv');
-    
-    console.log(data);
 
+    console.log(genreList);
+    console.log(data);
     // format movies data
     const tvFormat = data => {
 
@@ -35,10 +36,10 @@ const TvSeries = () => {
             return false;
         }
 
-        return data.map(movie => {
-            const poster        = movie.poster_path ? movieApi.getImagePosterUrl(movie.poster_path) : moviePlaceholder;
-            const year_released = movie.first_air_date.split('-')[0];
-            const genres        = movie.genre_ids.map(genre => {
+        return data.map(tv => {
+            const poster        = tv.poster_path ? movieApi.getImagePosterUrl(tv.poster_path) : moviePlaceholder;
+            const year_released = tv.first_air_date ? tv.first_air_date.split('-')[0] : null;
+            const genres        = tv.genre_ids.map(genre => {
                                     return apiConfig.genres[genre]
                                 }); 
 
@@ -46,7 +47,7 @@ const TvSeries = () => {
                         featuredImage: poster,
                         title: data.title,
                         details: `${year_released} . ${genres.join(' | ')}`,
-                        link: `/details/tv/${movie.id}`
+                        link: `/details/tv/${tv.id}`
                     };
         });
         
@@ -56,7 +57,7 @@ const TvSeries = () => {
  
     return (
         <InnerPage title="TV Series">
-            <QuickSearch className={styles.tvSeriresQuickSearch}/>
+            <QuickSearch className={styles.tvSeriresQuickSearch} searchHandler={updateSearch}/>
 
             {genreList && <FilterTabs 
                             clickHandler={updateSelectedGenre} 

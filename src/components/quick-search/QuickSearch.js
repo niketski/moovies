@@ -13,7 +13,8 @@ const QuickSearch = props => {
                             type="text"
                             name="search-keyword"
                             id="search-keyword"
-                            placeholder="Search by keyword..."/>
+                            placeholder="Search by keyword..."
+                            onChange={e => { props.searchHandler(e.target.value)}}/>
                         <FontAwesomeIcon icon={faMagnifyingGlass} />
                     </div>
                 </form>

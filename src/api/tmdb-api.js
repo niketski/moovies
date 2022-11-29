@@ -39,6 +39,13 @@ class TMDBApi {
 
     }
 
+    search(query, category = 'movie') {
+
+        console.log(`${baseUrl}/search/${category}?query=${encodeURIComponent(query)}&${urlSuffix}`);
+        return fetch(`${baseUrl}/search/${category}?query=${encodeURIComponent(query)}&${urlSuffix}`);
+
+    }
+
     getCasts(type, id) {
         
         return fetch(`${baseUrl}/${type}/${id}/credits?${urlSuffix}`);

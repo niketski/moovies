@@ -23,7 +23,8 @@ const Movies = () => {
             isLoadingGenre,
             errorType,
             activeGenres,
-            updateSelectedGenre 
+            updateSelectedGenre,
+            updateSearch 
         } = useListing();
     
     // format movies data
@@ -55,7 +56,7 @@ const Movies = () => {
  
     return (
         <InnerPage title="Movies">
-            <QuickSearch className={styles.moviesQuickSearch}/>
+            <QuickSearch className={styles.moviesQuickSearch} searchHandler={updateSearch}/>
 
             {genreList && <FilterTabs 
                             clickHandler={updateSelectedGenre} 
