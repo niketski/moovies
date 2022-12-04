@@ -210,32 +210,30 @@ const useListing = (listingType = 'movie') => {
     useEffect(() => {
         let timer;
 
-        // if(state.query.length) {
+        if(state.query.length) {
 
-        //     timer = setTimeout(() => {
+            timer = setTimeout(() => {
 
-        //         fetchData(state.activeGenres, state.query)
-        //             .catch(error => {
-        //                 dispatch({ type: 'DATA_ERROR', errorMessage: 'An error has occured fetching data.' });
-        //             });
+                fetchData(state.activeGenres, state.query)
+                    .catch(error => {
+                        dispatch({ type: 'DATA_ERROR', errorMessage: 'An error has occured fetching data.' });
+                    });
 
-        //     }, 500);
+            }, 500);
 
-        // } else {
+        } else {
 
-        //     fetchData(state.activeGenres, state.query)
-        //         .catch(error => {
-        //             dispatch({ type: 'DATA_ERROR', errorMessage: 'An error has occured fetching data.' });
-        //         });
-        // }
+            fetchData(state.activeGenres, state.query)
+                .catch(error => {
+                    dispatch({ type: 'DATA_ERROR', errorMessage: 'An error has occured fetching data.' });
+                });
+        }
 
-        fetchData(state.activeGenres, state.query)
-        .catch(error => {
-            dispatch({ type: 'DATA_ERROR', errorMessage: 'An error has occured fetching data.' });
-        });
 
         return () => {
-            console.log('cleanup');
+
+            clearTimeout(timer);
+            
         };
 
     }, [state.activeGenres, state.query]);

@@ -40,8 +40,7 @@ class TMDBApi {
     }
 
     search(query, category = 'movie') {
-
-        console.log(`${baseUrl}/search/${category}?query=${encodeURIComponent(query)}&${urlSuffix}`);
+        
         return fetch(`${baseUrl}/search/${category}?query=${encodeURIComponent(query)}&${urlSuffix}`);
 
     }

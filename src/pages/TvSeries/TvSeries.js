@@ -26,8 +26,6 @@ const TvSeries = () => {
             updateSearch 
         } = useListing('tv');
 
-    console.log(genreList);
-    console.log(data);
     // format movies data
     const tvFormat = data => {
 

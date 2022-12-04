@@ -3,9 +3,12 @@ import FeaturedCard from "../featured-card/FeaturedCard";
 import featuredImg from '../../assets/images/featured-img.jpg'
 
 const CardList = props => {
-    return (
-        <div className={`${styles.cardList} ${props.className ? props.className : ''}`}>
-            {props.cards.map((card, index) => {
+
+    const CardListContent = () => {
+        
+        if(props.cards.length) {
+
+            return props.cards.map((card, index) => {
                 return (
                     <FeaturedCard
                         key={index}
@@ -18,7 +21,17 @@ const CardList = props => {
                         details={card.details}
                     />
                 );
-            })}
+            });
+
+        }  else {
+
+            return <div className={styles.cardListMessage}>No results found.</div>;
+
+        }
+    };
+    return (
+        <div className={`${styles.cardList} ${props.className ? props.className : ''}`}>
+           {<CardListContent/>}
         </div>
     );
 };

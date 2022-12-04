@@ -18,3 +18,11 @@
         font-size: 14px;
         font-weight: 600;
     }
+
+    .cardListMessage {
+        text-align: center;
+        color: #fff;
+        font-weight: 600;
+        font-size: 28px;
+        width: 100%;
+    }
