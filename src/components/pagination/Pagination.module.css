@@ -20,20 +20,28 @@
             margin-right: 0;
         }
 
-            .paginationList li a {
+            .paginationList li a,
+            .paginationList li button {
                 font-weight: 400;
                 color: #fff;
                 font-size: 18px;
                 text-decoration: none;
+                background: transparent;
+                outline: none;
+                border: none;
+                cursor: pointer;
                 transition: opacity .3s ease;
             }
 
-            .paginationList li a:hover {
+            .paginationList li a:hover,
+            .paginationList li button:hover {
                 opacity: .50;
             }
 
             .paginationList .pagiPrevButton a,
-            .paginationList .pagiNextButton a {
+            .paginationList .pagiNextButton a,
+            .paginationList .pagiPrevButton button,
+            .paginationList .pagiNextButton button {
                 font-size: 27px;
                 color: var(--color-primary);
                 padding: 0;
@@ -48,7 +56,8 @@
                 margin-right: 0;
             }
 
-            .paginationList .pagiActive a {
+            .paginationList .pagiActive a,
+            .paginationList .pagiActive button {
                 background-color: var(--color-primary);
                 padding: 2px 13.5px;
             }

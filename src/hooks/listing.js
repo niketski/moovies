@@ -15,6 +15,7 @@ const initialState = {
     activeGenres: [],
     errorType: null,
     query: '',
+    currentPage: 1,
 };
 
 const listingReducer = (currentState, action) => {
@@ -109,6 +110,12 @@ const listingReducer = (currentState, action) => {
                 query: action.keyword
             }
 
+        case 'UPDATE_CURRENT_PAGE':
+            return {
+                ...currentState,
+                currentPage: action.page
+            }
+
     }
 };
 
@@ -177,6 +184,8 @@ const useListing = (listingType = 'movie') => {
 
         const data     = await response.json();
 
+        console.log(data);
+        
         dispatch({ type: 'DATA_RESPONSE', data: data.results});
         
     };

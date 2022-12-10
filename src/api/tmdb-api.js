@@ -3,9 +3,9 @@ const { baseUrl, apiKey, imageBaseUrl, urlSuffix } = apiConfig;
 
 class TMDBApi { 
 
-    getMovies(type = 'popular') {
+    getMovies(type = 'popular', page = 1) {
     
-        return fetch(`${baseUrl}/movie/${type}?${urlSuffix}`);
+        return fetch(`${baseUrl}/movie/${type}?page=${page}&${urlSuffix}`);
 
     }
 
@@ -15,9 +15,9 @@ class TMDBApi {
 
     }
 
-    getTvSeries(type = 'popular') {
+    getTvSeries(type = 'popular', page = 1) {
 
-        return fetch(`${baseUrl}/tv/${type}?${urlSuffix}`);
+        return fetch(`${baseUrl}/tv/${type}?page=${page}&${urlSuffix}`);
 
     }
 
@@ -33,15 +33,15 @@ class TMDBApi {
 
     }
 
-    getByGenre(type, genreIds) {
+    getByGenre(type, genreIds, page = 1) {
 
-        return fetch(`${apiConfig.baseUrl}/discover/${type}?${apiConfig.urlSuffix}&with_genres=${genreIds}`);
+        return fetch(`${apiConfig.baseUrl}/discover/${type}?${apiConfig.urlSuffix}&page=${page}&with_genres=${genreIds}`);
 
     }
 
-    search(query, category = 'movie') {
+    search(query, category = 'movie', page = 1) {
         
-        return fetch(`${baseUrl}/search/${category}?query=${encodeURIComponent(query)}&${urlSuffix}`);
+        return fetch(`${baseUrl}/search/${category}?query=${encodeURIComponent(query)}&page=${page}&${urlSuffix}`);
 
     }
 

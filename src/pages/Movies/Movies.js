@@ -69,7 +69,8 @@ const Movies = () => {
 
             {(movies && !isLoadingData) && <CardList className={styles.moviesCardList} cards={movies}/>}
             
-            <Pagination className={styles.moviesPagination}/>
+            <Pagination 
+                className={styles.moviesPagination}/>
         </InnerPage>
     );
 }
