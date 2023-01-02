@@ -22,3 +22,9 @@
         background-color: var(--color-secondary);
         box-shadow: 0 0 8px 2px #000;
     }
+
+@media (max-width: 767px) {
+    .filterTabs a {
+        margin: 0 10px 10px 0;
+    }
+}

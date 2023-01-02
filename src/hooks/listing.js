@@ -144,8 +144,6 @@ const listingReducer = (currentState, action) => {
             const pageLimit          = currentState.pageNumberLimit;
             let pages                = [];
 
-            console.log(Math.ceil(totalPages / itemPerPage));
-
             if(totalPages < itemPerPage) {
 
                 for(let i = 0; i <= totalPages; i++) {
@@ -160,19 +158,9 @@ const listingReducer = (currentState, action) => {
     
 
                 maxPageNumberLimitArray = maxPageNumberLimitArray.slice(indexOfFirstPage, indexOfLastPage);
-
                 pages = maxPageNumberLimitArray;
 
-                console.log('asd');
-
             }
-
-            // for(let i = 1; i <= Math.ceil(totalPages / itemPerPage); i++) {
-            //     pages.push(i);
-            // }
-
-            console.log('set page');
-            console.log(maxPageNumberLimit);
 
             return {
                 ...currentState,
@@ -199,7 +187,6 @@ const listingReducer = (currentState, action) => {
 
             const pageNumberLimit = currentState.pageNumberLimit;
 
-            console.log(action.pageCount);
             return {
                 ...currentState,
                 pageCount: action.pageCount
@@ -418,10 +405,6 @@ const useListing = (listingType = 'movie') => {
             });
             
     }, []);
-
-    // console.clear();
-    console.log(state);
-    // console.log(pageNumbers);
 
     return {
         data: state.data,

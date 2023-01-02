@@ -14,3 +14,10 @@
 .siteBtn:hover {
     background-color: #8440a5;
 }
+
+@media (max-width: 767px) { 
+    .siteBtn {
+        padding: 8px 15px;
+        font-size: 10px;
+    }
+}

@@ -74,14 +74,6 @@ const TvSeries = () => {
             {isLoadingData && <Spinner/>}
 
             {(tvSerries && !isLoadingData) && <CardList className={styles.tvSeriesCardList} cards={tvSerries}/>}
-            
-            {/* <Pagination className={styles.tvSeriesPagination}/> */}
-            {/* <Pagination 
-                className={styles.tvSeriesPagination}
-                totalPages={100}
-                pageSize={10}
-                currentPage={currentPage}
-                paginate={updateCurrentPage}/> */}
 
             {!(totalPages === 0 || totalPages === 1) && 
 

@@ -67,3 +67,28 @@
                 background-color: var(--color-primary);
                 padding: 2px 13.5px;
             }
+
+@media (max-width: 767px) {
+    .paginationList li {
+        margin-right: 18px; 
+    }
+
+    .paginationList .pagiPrevButton {
+        margin-right: 25px;
+    }
+
+    .paginationList .pagiNextButton {
+        margin-left: 25px;
+    }
+
+    .paginationList li a,
+    .paginationList li button {
+        font-size: 15px;
+    }
+
+    .paginationList .pagiActive a,
+    .paginationList .pagiActive button {
+        background-color: var(--color-primary);
+        padding: 2px 9px;
+    }
+}
