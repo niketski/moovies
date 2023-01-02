@@ -15,15 +15,22 @@ const movieApi = new TMDBApi;
 
 const TvSeries = () => {
     const {
-            data, 
-            isLoading: isLoadingData, 
-            errorMessage, 
-            genres: genreList,
-            isLoadingGenre,
-            errorType,
-            activeGenres,
-            updateSelectedGenre,
-            updateSearch 
+        data, 
+        isLoading: isLoadingData, 
+        errorMessage, 
+        genres: genreList,
+        isLoadingGenre,
+        errorType,
+        activeGenres,
+        currentPage,
+        pageNumbers, 
+        totalPages,
+        pageCount,
+        updateSelectedGenre,
+        updateSearch,
+        updateCurrentPage,
+        prevPage,
+        nextPage
         } = useListing('tv');
 
     // format movies data
@@ -68,7 +75,26 @@ const TvSeries = () => {
 
             {(tvSerries && !isLoadingData) && <CardList className={styles.tvSeriesCardList} cards={tvSerries}/>}
             
-            <Pagination className={styles.tvSeriesPagination}/>
+            {/* <Pagination className={styles.tvSeriesPagination}/> */}
+            {/* <Pagination 
+                className={styles.tvSeriesPagination}
+                totalPages={100}
+                pageSize={10}
+                currentPage={currentPage}
+                paginate={updateCurrentPage}/> */}
+
+            {!(totalPages === 0 || totalPages === 1) && 
+
+                <Pagination 
+                className={styles.tvSeriesPagination}
+                currentPage={currentPage}
+                pageNumbers={pageNumbers}
+                paginate={updateCurrentPage}
+                totalPages={totalPages}
+                prevPage={prevPage}
+                nextPage={nextPage}/>
+
+            }
         </InnerPage>
     );
 }

@@ -16,6 +16,14 @@ const initialState = {
     errorType: null,
     query: '',
     currentPage: 1,
+    resultPerpage: 20,
+    pageNumberLimit: 5,
+    activePages: [],
+    pages: [],
+    maxPageNumberLimit: 5,
+    minPageNumberLimit: 0,
+    totalPages: null,
+    pageCount: null,
 };
 
 const listingReducer = (currentState, action) => {
@@ -91,6 +99,7 @@ const listingReducer = (currentState, action) => {
 
                 return {
                     ...currentState,
+                    currentPage: 1,
                     activeGenres: currentGenres,
                 }
             }
@@ -99,6 +108,8 @@ const listingReducer = (currentState, action) => {
             
             return {
                 ...currentState,
+                currentPage: 1,
+                query: '',
                 activeGenres: currentGenres
             }
 
@@ -107,6 +118,7 @@ const listingReducer = (currentState, action) => {
             return {
                 ...currentState,
                 activeGenres: [],
+                currentPage: 1,
                 query: action.keyword
             }
 
@@ -116,14 +128,91 @@ const listingReducer = (currentState, action) => {
                 currentPage: action.page
             }
 
+        case 'UPDATE_TOTAL_PAGES':
+
+            return {
+                ...currentState,
+                totalPages: action.totalPages
+            }
+
+
+        case 'SET_PAGES':
+            
+            const totalPages         = currentState.totalPages;
+            const itemPerPage        = currentState.resultPerpage; 
+            const maxPageNumberLimit = currentState.maxPageNumberLimit;
+            const pageLimit          = currentState.pageNumberLimit;
+            let pages                = [];
+
+            console.log(Math.ceil(totalPages / itemPerPage));
+
+            if(totalPages < itemPerPage) {
+
+                for(let i = 0; i <= totalPages; i++) {
+                    pages.push(i);
+                }
+
+            } else {
+
+                let maxPageNumberLimitArray = [...Array(maxPageNumberLimit + 1).keys()].slice(1);
+                let indexOfLastPage  = maxPageNumberLimitArray.length;
+                let indexOfFirstPage = maxPageNumberLimitArray.length - pageLimit;
+    
+
+                maxPageNumberLimitArray = maxPageNumberLimitArray.slice(indexOfFirstPage, indexOfLastPage);
+
+                pages = maxPageNumberLimitArray;
+
+                console.log('asd');
+
+            }
+
+            // for(let i = 1; i <= Math.ceil(totalPages / itemPerPage); i++) {
+            //     pages.push(i);
+            // }
+
+            console.log('set page');
+            console.log(maxPageNumberLimit);
+
+            return {
+                ...currentState,
+                pages: pages
+            }
+
+
+        case 'UPDATE_MAX_PAGE_NUMBER_LIMIT':
+            
+
+            return {
+                ...currentState,
+                maxPageNumberLimit: action.maxPageNumberLimit
+            }
+
+        case 'UPDATE_MIN_PAGE_NUMBER_LIMIT':
+
+            return {
+                ...currentState,
+                minPageNumberLimit: action.minPageNumberLimit
+            }
+
+        case 'SET_PAGE_COUNT':
+
+            const pageNumberLimit = currentState.pageNumberLimit;
+
+            console.log(action.pageCount);
+            return {
+                ...currentState,
+                pageCount: action.pageCount
+            }
+            
+
     }
 };
 
 const useListing = (listingType = 'movie') => {
     const [state, dispatch] = useReducer(listingReducer, initialState);
 
-
-    const fetchData = async (genres, keyword) => {
+    const fetchData = async (genres, keyword, currentPage) => {
     
         dispatch({ type: 'FETCH_DATA' });
 
@@ -136,15 +225,15 @@ const useListing = (listingType = 'movie') => {
 
             if(keyword.length) { // fetch by search keyword
 
-                response = await tmdbApiInstance.search(state.query, listingType);
+                response = await tmdbApiInstance.search(state.query, listingType, currentPage);
     
             } else if (genres.length) { // fetch by genre
     
-                response = await tmdbApiInstance.getByGenre(listingType, genres.join(','));
+                response = await tmdbApiInstance.getByGenre(listingType, genres.join(','), currentPage);
     
             } else { // default fetch
     
-                response = await tmdbApiInstance.getTvSeries();
+                response = await tmdbApiInstance.getTvSeries('popular', currentPage);
     
             }
 
@@ -153,9 +242,20 @@ const useListing = (listingType = 'movie') => {
                 throw new Error(message);
             }
 
-            const data     = await response.json();
+            const data            = await response.json();
+            const pageNumberLimit = state.pageNumberLimit;
+            let pageCount         = pageNumberLimit;
+    
+            if(data.total_pages < pageCount) {
+    
+                pageCount = data.totalPages;
+    
+            }
 
             dispatch({ type: 'DATA_RESPONSE', data: data.results});
+            dispatch({ type: 'UPDATE_TOTAL_PAGES', totalPages: data.total_pages});
+            dispatch({ type: 'SET_PAGES' });
+            dispatch({ type: 'SET_PAGE_COUNT', pageCount: pageCount });
 
             return;
         }
@@ -165,15 +265,15 @@ const useListing = (listingType = 'movie') => {
 
         if(keyword.length) { // fetch by search keyword
 
-            response = await tmdbApiInstance.search(state.query, listingType);
+            response = await tmdbApiInstance.search(state.query, listingType, currentPage);
 
         } else if (genres.length) { // fetch by genre
 
-            response = await tmdbApiInstance.getByGenre(listingType, genres.join(','));
+            response = await tmdbApiInstance.getByGenre(listingType, genres.join(','), currentPage);
 
         } else { // default fetch
 
-            response = await tmdbApiInstance.getMovies();
+            response = await tmdbApiInstance.getMovies('popular', currentPage);
 
         }
 
@@ -182,11 +282,20 @@ const useListing = (listingType = 'movie') => {
             throw new Error(message);
         }
 
-        const data     = await response.json();
+        const data            = await response.json();
+        const pageNumberLimit = state.pageNumberLimit;
+        let pageCount         = pageNumberLimit;
 
-        console.log(data);
-        
+        if(data.total_pages < pageCount) {
+
+            pageCount = data.total_pages;
+
+        }
+
         dispatch({ type: 'DATA_RESPONSE', data: data.results});
+        dispatch({ type: 'UPDATE_TOTAL_PAGES', totalPages: data.total_pages});
+        dispatch({ type: 'SET_PAGES' });
+        dispatch({ type: 'SET_PAGE_COUNT', pageCount: pageCount });
         
     };
 
@@ -216,6 +325,60 @@ const useListing = (listingType = 'movie') => {
         dispatch({ type: 'UPDATE_SEARCH', keyword: keyword});
     };
 
+    const updateCurrentPage = pageNumber => {
+        dispatch({ type: 'UPDATE_CURRENT_PAGE', page: pageNumber });
+    };
+
+    const handlePrevPage = currentPage => {
+
+        if(currentPage - 1 <= 0) {
+            return false;
+        }
+
+        dispatch({ type: 'UPDATE_CURRENT_PAGE', page: currentPage - 1 });
+
+        if((currentPage - 1) % state.pageNumberLimit == 0) {
+
+            dispatch({ type: 'UPDATE_MAX_PAGE_NUMBER_LIMIT', maxPageNumberLimit: state.maxPageNumberLimit - state.pageNumberLimit });
+            dispatch({ type: 'UPDATE_MIN_PAGE_NUMBER_LIMIT', minPageNumberLimit: state.minPageNumberLimit - state.pageNumberLimit });
+        }
+    };
+
+    const handleNextPage = currentPage => {
+
+        if(currentPage + 1 > state.totalPages) {
+           
+            return false;
+            
+        }
+
+        dispatch({ type: 'UPDATE_CURRENT_PAGE', page: currentPage + 1 });
+
+        if((currentPage + 1) > state.maxPageNumberLimit) {
+
+            dispatch({ type: 'UPDATE_MAX_PAGE_NUMBER_LIMIT', maxPageNumberLimit: state.maxPageNumberLimit + state.pageNumberLimit });
+            dispatch({ type: 'UPDATE_MIN_PAGE_NUMBER_LIMIT', minPageNumberLimit: state.minPageNumberLimit + state.pageNumberLimit });
+        }
+    };
+    
+    
+    let pageNumbers = null;
+
+    if(state.pages) {
+
+        pageNumbers = state.pages.filter(number => {
+
+            if(number < state.maxPageNumberLimit + 1 && number > state.minPageNumberLimit) {
+
+                return number;
+
+            } 
+
+        });
+    }
+
+    
+
     useEffect(() => {
         let timer;
 
@@ -223,7 +386,7 @@ const useListing = (listingType = 'movie') => {
 
             timer = setTimeout(() => {
 
-                fetchData(state.activeGenres, state.query)
+                fetchData(state.activeGenres, state.query, state.currentPage)
                     .catch(error => {
                         dispatch({ type: 'DATA_ERROR', errorMessage: 'An error has occured fetching data.' });
                     });
@@ -232,7 +395,7 @@ const useListing = (listingType = 'movie') => {
 
         } else {
 
-            fetchData(state.activeGenres, state.query)
+            fetchData(state.activeGenres, state.query, state.currentPage)
                 .catch(error => {
                     dispatch({ type: 'DATA_ERROR', errorMessage: 'An error has occured fetching data.' });
                 });
@@ -245,7 +408,7 @@ const useListing = (listingType = 'movie') => {
             
         };
 
-    }, [state.activeGenres, state.query]);
+    }, [state.activeGenres, state.query, state.currentPage]);
 
     useEffect(() => {
 
@@ -254,9 +417,11 @@ const useListing = (listingType = 'movie') => {
                 dispatch({ type: 'GENRE_ERROR', errorMessage: 'An error has occured fetching genres.' });
             });
             
-    }, [])
+    }, []);
 
-
+    // console.clear();
+    console.log(state);
+    // console.log(pageNumbers);
 
     return {
         data: state.data,
@@ -267,8 +432,15 @@ const useListing = (listingType = 'movie') => {
         genreErrorMessage: state.genreErrorMessage,
         errorType: state.errorType,
         activeGenres: state.activeGenres,
+        currentPage: state.currentPage,
+        pageNumbers: pageNumbers,
+        totalPages: state.totalPages,
+        pageCount: state.pageCount,
         updateSelectedGenre: updateActiveGenres,
-        updateSearch: updateSearchKeyword
+        updateSearch: updateSearchKeyword,
+        updateCurrentPage: updateCurrentPage,
+        prevPage: handlePrevPage,
+        nextPage: handleNextPage,
     };
 
 };

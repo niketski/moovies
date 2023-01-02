@@ -23,8 +23,15 @@ const Movies = () => {
             isLoadingGenre,
             errorType,
             activeGenres,
+            currentPage,
+            pageNumbers, 
+            totalPages,
+            pageCount,
             updateSelectedGenre,
-            updateSearch 
+            updateSearch,
+            updateCurrentPage,
+            prevPage,
+            nextPage
         } = useListing();
     
     // format movies data
@@ -37,7 +44,7 @@ const Movies = () => {
 
         return data.map(movie => {
             const poster        = movie.poster_path ? movieApi.getImagePosterUrl(movie.poster_path) : moviePlaceholder;
-            const year_released = movie.release_date.split('-')[0];
+            const year_released = movie.release_date ? movie.release_date.split('-')[0] : null;
             const genres        = movie.genre_ids.map(genre => {
                                     return apiConfig.genres[genre]
                                 }); 
@@ -53,7 +60,7 @@ const Movies = () => {
     };
 
     const movies = movieFormat(data);
- 
+
     return (
         <InnerPage title="Movies">
             <QuickSearch className={styles.moviesQuickSearch} searchHandler={updateSearch}/>
@@ -68,9 +75,20 @@ const Movies = () => {
             {isLoadingData && <Spinner/>}
 
             {(movies && !isLoadingData) && <CardList className={styles.moviesCardList} cards={movies}/>}
+
+            {!(totalPages === 0 || totalPages === 1) && 
+
+                <Pagination 
+                className={styles.moviesPagination}
+                currentPage={currentPage}
+                pageNumbers={pageNumbers}
+                paginate={updateCurrentPage}
+                totalPages={totalPages}
+                prevPage={prevPage}
+                nextPage={nextPage}/>
+
+            }
             
-            <Pagination 
-                className={styles.moviesPagination}/>
         </InnerPage>
     );
 }
