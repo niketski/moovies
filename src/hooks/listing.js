@@ -239,6 +239,7 @@ const useListing = (listingType = 'movie') => {
     
             }
 
+            console.log(data);
             dispatch({ type: 'DATA_RESPONSE', data: data.results});
             dispatch({ type: 'UPDATE_TOTAL_PAGES', totalPages: data.total_pages});
             dispatch({ type: 'SET_PAGES' });
@@ -278,6 +279,8 @@ const useListing = (listingType = 'movie') => {
             pageCount = data.total_pages;
 
         }
+
+        console.log(data);
 
         dispatch({ type: 'DATA_RESPONSE', data: data.results});
         dispatch({ type: 'UPDATE_TOTAL_PAGES', totalPages: data.total_pages});

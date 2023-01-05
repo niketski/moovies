@@ -1,4 +1,4 @@
-import { useState, createContext } from 'react';
+import { useState, createContext, useEffect } from 'react';
 
 const initialState = {
     isActive: false,
@@ -26,6 +26,11 @@ const BurgerMenuContextProvider = props => {
         setIsActive(false);
 
     };
+
+    useEffect(() => {
+
+        
+    }, []);
 
     const values = {
         burgerMenuOpen,

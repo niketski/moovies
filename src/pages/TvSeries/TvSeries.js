@@ -33,6 +33,8 @@ const TvSeries = () => {
         nextPage
         } = useListing('tv');
 
+        console.log(data);
+
     // format movies data
     const tvFormat = data => {
 
@@ -43,7 +45,7 @@ const TvSeries = () => {
 
         return data.map(tv => {
             const poster        = tv.poster_path ? movieApi.getImagePosterUrl(tv.poster_path) : moviePlaceholder;
-            const year_released = tv.first_air_date ? tv.first_air_date.split('-')[0] : null;
+            const year_released = tv.first_air_date ? tv.first_air_date.split('-')[0] : '';
             const genres        = tv.genre_ids.map(genre => {
                                     return apiConfig.genres[genre]
                                 }); 
@@ -51,7 +53,8 @@ const TvSeries = () => {
             return {
                         featuredImage: poster,
                         title: data.title,
-                        details: `${year_released} . ${genres.join(' | ')}`,
+                        // details: `${year_released} . ${genres.join(' | ')}`,
+                        details: `${year_released} ${genres.length ? '. ' + genres.join(' | ') : ''}`,
                         link: `/details/tv/${tv.id}`
                     };
         });

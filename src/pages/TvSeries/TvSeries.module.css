@@ -13,3 +13,9 @@
     .tvSeriesPagination {
         margin-top: 30px;
     }
+
+@media (max-width: 991px) {
+    .tvSeriresQuickSearch {
+        margin-right: auto;
+    }
+}
