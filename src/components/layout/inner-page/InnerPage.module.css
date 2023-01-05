@@ -16,3 +16,9 @@
     .InnterPageContent {
         padding: 49px 0 80px;
     }
+
+@media (max-width: 991px) {
+    .InnerPageTitle {
+        font-size: 48px;   
+    }
+}

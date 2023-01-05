@@ -1,5 +1,5 @@
 import { useState, createContext, useEffect } from 'react';
-
+import { useLocation } from 'react-router-dom';
 const initialState = {
     isActive: false,
 };
@@ -10,6 +10,8 @@ export const BurgerMenuContext = createContext(initialState);
 // Context Provider
 const BurgerMenuContextProvider = props => {
     const [isActive, setIsActive] = useState(false);
+    const location = useLocation();
+    const pathName = location.pathname;
 
     const burgerMenuOpen = () => {
 
@@ -24,13 +26,18 @@ const BurgerMenuContextProvider = props => {
         document.body.style.overflow = 'initial';
 
         setIsActive(false);
-
+        
     };
 
     useEffect(() => {
 
-        
-    }, []);
+        if(isActive) {
+
+            // close burger menu when when path changes
+            burgerMenuClose();
+        }
+
+    }, [pathName]);
 
     const values = {
         burgerMenuOpen,
