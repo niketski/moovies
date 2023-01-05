@@ -5,11 +5,16 @@
     left: 0;
     z-index: 100;
     width: 100%;
-    background: var(--color-accent);
+    background-color: var(--color-accent);
+    transition: background-color .3s ease;
 }
 
 .mainHeader.IpHeader {
     background-color: transparent;
+}
+
+.mainHeader.fixedHeader {
+    background: var(--color-accent);
 }
 
     .headerRow {

@@ -12,6 +12,7 @@ import BurgerMenu from '../../ui/burger-menu/BurgerMenu';
 const Header = () => {
     const headerRef = useRef();
     const [headerHeight, setHeaderHeight] = useState(0);
+    const [headerActive, setHeaderActive] = useState(false);
     const DOMLoadedCtx = useContext(DOMLoadedContext);
     const BurgerMenuCtx = useContext(BurgerMenuContext);
     const location = useLocation();
@@ -35,12 +36,35 @@ const Header = () => {
         DOMLoadedCtx.setWrapperPaddingTop(headerRef.current.offsetHeight);
 
     }, [headerHeight]);
+
+    useEffect(() => {
+
+        window.addEventListener('resize', handleResize);
+
+        window.addEventListener('scroll', () => {
+            
+            const scrollTop = Math.round(window.scrollY);
+
+            if(scrollTop >= 150) {
+
+                setHeaderActive(true);
+
+            } else {
+
+                setHeaderActive(false);
+
+            }
     
-    window.addEventListener('resize', handleResize);
+            
+        });
+
+    }, []);
+    
+    
 
     return (
         <>
-            <header ref={headerRef} className={`${styles.mainHeader} ${headerClass}`}>
+            <header ref={headerRef} className={`${styles.mainHeader} ${headerClass} ${headerActive ? styles.fixedHeader : ''}`}>
                 <div className="container">
                     <div className={`${styles.headerRow}`}>
                         <div className="headerLeft">
