@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import BannerGradient from '../../banner-gradient/BannerGradient';
+import DetailsTrailer from './details-trailer/DetailsTrailer';
 import DetailsFeaturedImage from './details-featured-image/DetailsFeaturedImage';
 import DetailsGenreTabs from './details-genre-tabs/DetailsGenreTabs';
 import DetailsMeta from './details-meta/DetailsMeta';
@@ -23,6 +24,7 @@ const DetailsPage = props => {
     const [similar, setSimilar]             = useState(null);
     const id     = params.id;
     const type   = params.type; 
+
     const generateGenres = genres => {
 
         return genres.map(genre => genre.name);
@@ -113,6 +115,7 @@ const DetailsPage = props => {
 
             <div className={styles.detailsPageContent}>
                 <div className="container">
+                    <DetailsTrailer/>
                     <div className={styles.detailsPageMain}>
                         <div className={styles.detailsPageMainLeft}>
                             {currentData ? 

@@ -29,6 +29,13 @@ const DOMLoadedContextProvider = props => {
 
     }, [currentPath]);
 
+    useEffect(() => {
+        
+        // go to the most upper part of the page everytime the user go to another page
+        window.scrollTo(0, 0,);
+
+    }, [currentPath]);
+
    
 
     const values = {

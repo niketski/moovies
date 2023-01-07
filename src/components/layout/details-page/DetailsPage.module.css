@@ -24,6 +24,7 @@
     .detailsPageContent {
         position: relative;
         z-index: 5;
+        padding-top: 152px;
     }
 
         .detailsPageMainContent h1 {
@@ -51,6 +52,11 @@
 }
 
 @media (max-width: 991px) {
+
+    .detailsPageContent {
+        padding-top: 60px;
+    }
+
     .detailsPageMain {
         display: block;
         padding-top: 60px;

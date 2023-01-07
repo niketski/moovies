@@ -1,0 +1,36 @@
+.detailsPageTrailer {
+    position: relative;
+    margin-bottom: 124px;
+}
+
+    .detailsPageTrailer h3 {
+        font: normal 400 42px/1 var(--font-secondary);
+        letter-spacing: .050em;
+        color: #fff;
+        margin-bottom: 34px;
+    }
+
+    .trailerVideo {
+        position: relative;
+        padding-top: 56.20%;
+    }
+
+        .trailerVideo iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+@media (max-width: 991px) { 
+
+    .detailsPageTrailer {
+        margin-bottom: 20px;
+    }
+
+    .detailsPageTrailer h3 {
+        font-size: 30px;
+    }
+
+}
