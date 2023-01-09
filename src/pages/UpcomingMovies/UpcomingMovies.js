@@ -32,7 +32,7 @@ const Movies = () => {
             updateCurrentPage,
             prevPage,
             nextPage
-        } = useListing('upcoming');
+        } = useListing('movie', 'upcoming');
     
     // format movies data
     const movieFormat = data => {

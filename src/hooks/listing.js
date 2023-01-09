@@ -200,7 +200,7 @@ const listingReducer = (currentState, action) => {
     }
 };
 
-const useListing = (listingType = 'movie') => {
+const useListing = (category = 'movie', type = 'popular') => {
     const [state, dispatch] = useReducer(listingReducer, initialState);
 
     const fetchData = async (genres, keyword, currentPage) => {
@@ -209,63 +209,17 @@ const useListing = (listingType = 'movie') => {
 
         let response; 
 
-        // fetch tv series data
-        if(listingType === 'tv') {
-
-            response = await tmdbApiInstance.getTvSeries();
-
-            if(keyword.length) { // fetch by search keyword
-
-                response = await tmdbApiInstance.search(state.query, listingType, currentPage);
-    
-            } else if (genres.length) { // fetch by genre
-    
-                response = await tmdbApiInstance.getByGenre(listingType, genres.join(','), currentPage);
-    
-            } else { // default fetch
-    
-                response = await tmdbApiInstance.getTvSeries('popular', currentPage);
-    
-            }
-
-            if(!response.ok) {
-                const message = `An error has occured: ${response.status}`;
-                throw new Error(message);
-            }
-
-            const data            = await response.json();
-            const pageNumberLimit = state.pageNumberLimit;
-            let pageCount         = pageNumberLimit;
-    
-            if(data.total_pages < pageCount) {
-    
-                pageCount = data.totalPages;
-    
-            }
-
-            console.log(data);
-            dispatch({ type: 'DATA_RESPONSE', data: data.results});
-            dispatch({ type: 'UPDATE_TOTAL_PAGES', totalPages: data.total_pages});
-            dispatch({ type: 'SET_PAGES' });
-            dispatch({ type: 'SET_PAGE_COUNT', pageCount: pageCount });
-
-            return;
-        }
-
-
-         // fetch movies data
-
         if(keyword.length) { // fetch by search keyword
 
-            response = await tmdbApiInstance.search(state.query, listingType, currentPage);
+            response = await tmdbApiInstance.search(state.query, category, currentPage);
 
         } else if (genres.length) { // fetch by genre
 
-            response = await tmdbApiInstance.getByGenre(listingType, genres.join(','), currentPage);
+            response = await tmdbApiInstance.getByGenre(category, genres.join(','), currentPage);
 
         } else { // default fetch
 
-            response = await tmdbApiInstance.getMovies('popular', currentPage);
+            response = await tmdbApiInstance.getData(category, type, currentPage);
 
         }
 
@@ -297,7 +251,7 @@ const useListing = (listingType = 'movie') => {
 
         dispatch({ type: 'FETCH_GENRES' });
 
-        const response = await tmdbApiInstance.getGenre(listingType);
+        const response = await tmdbApiInstance.getGenre(category);
 
         if(!response.ok) {
             const message = `An error has occured: ${response.status}`;

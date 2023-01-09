@@ -3,6 +3,12 @@ const { baseUrl, apiKey, imageBaseUrl, urlSuffix } = apiConfig;
 
 class TMDBApi { 
 
+    getData(category = 'movie', type = 'popular', page = 1) {
+
+        return fetch(`${baseUrl}/${category}/${type}?page=${page}&${urlSuffix}`);
+
+    }
+
     getMovies(type = 'popular', page = 1) {
     
         return fetch(`${baseUrl}/movie/${type}?page=${page}&${urlSuffix}`);

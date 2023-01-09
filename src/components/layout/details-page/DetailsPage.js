@@ -71,6 +71,8 @@ const DetailsPage = props => {
         const response = await movieApi.getDetails(type, id);
         const data     = await response.json();
 
+        console.log(data);
+
         setCurrentData(data);
         setCurrentDataId(data.id);
 
@@ -129,7 +131,9 @@ const DetailsPage = props => {
 
             <div className={styles.detailsPageContent}>
                 <div className="container">
+                    
                     {trailer && <DetailsTrailer video={trailer}/>}
+
                     <div className={styles.detailsPageMain}>
                         <div className={styles.detailsPageMainLeft}>
                             {currentData ? 
@@ -148,7 +152,7 @@ const DetailsPage = props => {
                                     
                                     <DetailsGenreTabs genres={generateGenres(currentData.genres)}/>
                                 }
-                                <h1>{ currentData ? currentData.title : null }</h1>
+                                <h1>{ currentData ? currentData.title || currentData.name : null }</h1>
                                 {currentData && <DetailsMeta meta={generateMeta(currentData)}/>}
                                 <p>{currentData && currentData.overview}</p>
                             </div>
