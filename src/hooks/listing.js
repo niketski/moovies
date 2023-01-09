@@ -100,6 +100,8 @@ const listingReducer = (currentState, action) => {
                 return {
                     ...currentState,
                     currentPage: 1,
+                    maxPageNumberLimit: currentState.pageNumberLimit,
+                    minPageNumberLimit: 0,
                     activeGenres: currentGenres,
                 }
             }
@@ -110,6 +112,8 @@ const listingReducer = (currentState, action) => {
                 ...currentState,
                 currentPage: 1,
                 query: '',
+                maxPageNumberLimit: currentState.pageNumberLimit,
+                minPageNumberLimit: 0,
                 activeGenres: currentGenres
             }
 

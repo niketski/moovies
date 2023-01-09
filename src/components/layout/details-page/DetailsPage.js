@@ -22,6 +22,7 @@ const DetailsPage = props => {
     const [currentDataId, setCurrentDataId] = useState(null);
     const [cast, setCast]                   = useState(null);
     const [similar, setSimilar]             = useState(null);
+    const [trailer, setTrailer]             = useState(null);
     const id     = params.id;
     const type   = params.type; 
 
@@ -82,10 +83,23 @@ const DetailsPage = props => {
         setCast(data.cast);
     };
 
+    const fetchTrailer = async () => {
+        const response = await movieApi.getVideos(type, id);
+        const data     = await response.json();
+
+        const trailer = data.results.filter(video => {
+            return video.type === "Trailer";
+        });
+
+        setTrailer(trailer[0]);
+        console.log(data);
+    }
+
     useEffect(() => {
 
         fetchDetails();
         fetchSimilar();
+        fetchTrailer();
         window.scroll(0,0);
 
     }, [id]);
@@ -115,7 +129,7 @@ const DetailsPage = props => {
 
             <div className={styles.detailsPageContent}>
                 <div className="container">
-                    <DetailsTrailer/>
+                    {trailer && <DetailsTrailer video={trailer}/>}
                     <div className={styles.detailsPageMain}>
                         <div className={styles.detailsPageMainLeft}>
                             {currentData ? 

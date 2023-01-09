@@ -9,6 +9,12 @@ class TMDBApi {
 
     }
 
+    getVideos(category, id) {
+
+        return fetch(`${baseUrl}/${category}/${id}/videos?${urlSuffix}`);
+
+    }
+
     getSimilar(type, id) {
 
         return fetch(`${baseUrl}/${type}/${id}/similar?${urlSuffix}`)

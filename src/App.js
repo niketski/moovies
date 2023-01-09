@@ -42,31 +42,6 @@ function App() {
 
     getMovies();
 
-    // const getMovieVideos = async () => {
-    //   const response = await movieApi.getMovieVideos();
-    //   const data     = await response.json();
-
-    //   console.log(data);
-    // };
-
-    // getMovieVideos();
-
-    // fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiConfig.apiKey}&language=en-US&page=1`)
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     const { results } = data;
-
-    //     console.log(data);
-    //   });
-
-    // fetch(`https://api.themoviedb.org/3/configuration?api_key=${apiConfig.apiKey}`)
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     console.log(data);
-    //   })
-
-      // console.log(movies);
-      // console.log(num);
 
   }, [num]);
 
