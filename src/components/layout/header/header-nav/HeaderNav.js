@@ -9,9 +9,7 @@ const HeaderNav = props => {
                 <li><NavLink to="/">Home</NavLink></li>
                 <li><NavLink to="/movies">Movies</NavLink></li>
                 <li><NavLink to="/tv-series">TV Series</NavLink></li>
-                <li><NavLink to="/genres">Genres</NavLink></li>
                 <li><NavLink to="/upcoming-movies">Upcoming Movies</NavLink></li>
-                <li><NavLink to="/contact">Contact</NavLink></li>
             </ul>
         </nav>
     )
