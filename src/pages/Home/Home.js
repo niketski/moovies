@@ -37,17 +37,25 @@ const Home = () => {
 
     }, [error]);
 
-    let heroProps = {
-        height: 800,
-        bannerImage: heroMovie ? movieApi.getImageBackdropUrl(heroMovie.backdrop_path) : bannerPlaceholder,
-        bannerTitle: heroMovie ? heroMovie.title : '',
-        bannerDescription: heroMovie ? heroMovie.overview : '',
-        ctaLink: '/'
-    };
+    let heroProps = null;
+
+    if(heroMovie) {
+
+        heroProps = {
+            height: 800,
+            bannerImage: heroMovie ? movieApi.getImageBackdropUrl(heroMovie.backdrop_path) : bannerPlaceholder,
+            bannerTitle: heroMovie ? heroMovie.title : '',
+            bannerDescription: heroMovie ? heroMovie.overview : '',
+            ctaLink: `/details/movie/${heroMovie.id}`
+        };
+
+    }
+
+    console.log(heroProps);
 
     return (
         <div>
-            <Hero {...heroProps}/>
+            {heroMovie && <Hero {...heroProps}/>}
             <FeaturedMovies/>
             <FeaturedTv/>
         </div>
