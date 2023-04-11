@@ -1,10 +1,11 @@
+import { useCallback } from 'react';
 import styles from './CardList.module.css';
 import FeaturedCard from "../featured-card/FeaturedCard";
 import featuredImg from '../../assets/images/featured-img.jpg'
 
 const CardList = props => {
 
-    const CardListContent = () => {
+    const CardListContent = useCallback(() => {
         
         if(props.cards.length) {
 
@@ -28,7 +29,8 @@ const CardList = props => {
             return <div className={styles.cardListMessage}>No results found.</div>;
 
         }
-    };
+    }, []);
+    
     return (
         <div className={`${styles.cardList} ${props.className ? props.className : ''}`}>
            {<CardListContent/>}

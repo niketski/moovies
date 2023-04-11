@@ -1,3 +1,4 @@
+import React from 'react';
 import styles from './Pagination.module.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
@@ -36,4 +37,4 @@ const Pagination = props => {
 };
 
 
-export default Pagination;
+export default React.memo(Pagination);

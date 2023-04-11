@@ -1,3 +1,4 @@
+import React from 'react';
 import styles from './PlayButton.module.css';
 
 const PlayButton = props => {
@@ -8,4 +9,4 @@ const PlayButton = props => {
     );
 };
 
-export default PlayButton;
+export default React.memo(PlayButton);

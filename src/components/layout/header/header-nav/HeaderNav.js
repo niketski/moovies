@@ -1,3 +1,4 @@
+import React from 'react';
 import styles from './HeaderNav.module.css';
 import { Link, NavLink } from 'react-router-dom';
 
@@ -15,4 +16,4 @@ const HeaderNav = props => {
     )
 };
 
-export default HeaderNav;
+export default React.memo(HeaderNav);

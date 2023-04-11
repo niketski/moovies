@@ -1,3 +1,4 @@
+import React from 'react';
 import styles from './BurgerMenu.module.css';
 import { Link, NavLink } from 'react-router-dom';
 import { useContext } from 'react';
@@ -27,5 +28,5 @@ const BurgerMenu = props => {
     );
 };
 
-export default BurgerMenu;
+export default React.memo(BurgerMenu);
 

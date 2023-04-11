@@ -1,3 +1,4 @@
+import React from 'react';
 import styles from './FilterTabs.module.css';
 import Button from '../button/Button';
 
@@ -43,4 +44,4 @@ const FilterTabs = props => {
     );
 };
 
-export default FilterTabs;
+export default React.memo(FilterTabs);

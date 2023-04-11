@@ -1,3 +1,4 @@
+import React from 'react';
 import styles from './QuickSearch.module.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faBarsProgress } from "@fortawesome/free-solid-svg-icons";
@@ -23,4 +24,4 @@ const QuickSearch = props => {
     );
 };
 
-export default QuickSearch;
+export default React.memo(QuickSearch);

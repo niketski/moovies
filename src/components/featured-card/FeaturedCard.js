@@ -1,3 +1,4 @@
+import React from 'react';
 import styles from './FeaturedCard.module.css';
 import { Link } from 'react-router-dom';
 import PlayButton from "../ui/play-button/PlayButton";
@@ -23,4 +24,4 @@ const FeaturedCard = props => {
     );
 };
 
-export default FeaturedCard;
+export default React.memo(FeaturedCard);

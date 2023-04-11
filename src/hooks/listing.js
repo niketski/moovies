@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useCallback } from "react";
 import apiConfig from "../api/tmdb-api.config";
 import TMDBApi from "../api/tmdb-api";
 
@@ -247,7 +247,7 @@ const useListing = (category = 'movie', type = 'popular') => {
         
     };
 
-    const fetchGenres = async () => {
+    const fetchGenres = useCallback(async () => {
 
         dispatch({ type: 'FETCH_GENRES' });
 
@@ -261,21 +261,23 @@ const useListing = (category = 'movie', type = 'popular') => {
         const data     = await response.json();
 
         dispatch({ type: 'GENRE_RESPONSE', genres: data.genres }); 
-    };
+    }, []);
 
-    const updateActiveGenres = id => {
+    const updateActiveGenres = useCallback(id => {
 
-        dispatch({ type: 'UPDATE_ACTIVE_GENRE', genreId: id })
-    };
+        dispatch({ type: 'UPDATE_ACTIVE_GENRE', genreId: id });
 
-    const updateSearchKeyword = keyword => {
+    }, []);
+
+    const updateSearchKeyword = useCallback(keyword => {
 
         dispatch({ type: 'UPDATE_SEARCH', keyword: keyword});
-    };
 
-    const updateCurrentPage = pageNumber => {
+    }, []);
+
+    const updateCurrentPage = useCallback(pageNumber => {
         dispatch({ type: 'UPDATE_CURRENT_PAGE', page: pageNumber });
-    };
+    }, []);
 
     const handlePrevPage = currentPage => {
 
