@@ -1,5 +1,6 @@
 {
   "homepage": "http://niketski.github.io/moovies",
+  "test": "test branch",
   "name": "moovies",
   "version": "0.1.0",
   "private": true,
