@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/moovies/static/css/main.b49c2b48.css",
-    "main.js": "/moovies/static/js/main.3dd216b5.js",
+    "main.js": "/moovies/static/js/main.ece11fe3.js",
     "static/media/home-banner.jpg": "/moovies/static/media/home-banner.0d02b40dbe16ccd8be55.jpg",
     "static/media/details-page-banner.jpg": "/moovies/static/media/details-page-banner.2c0ce6fd3c4d3e4efdd0.jpg",
     "static/media/Montserrat-ExtraBoldItalic.woff": "/moovies/static/media/Montserrat-ExtraBoldItalic.bb56843bd48566e07ad7.woff",
@@ -46,10 +46,10 @@
     "static/media/movie-placeholder.jpg": "/moovies/static/media/movie-placeholder.7f48feef102495dec7d3.jpg",
     "index.html": "/moovies/index.html",
     "main.b49c2b48.css.map": "/moovies/static/css/main.b49c2b48.css.map",
-    "main.3dd216b5.js.map": "/moovies/static/js/main.3dd216b5.js.map"
+    "main.ece11fe3.js.map": "/moovies/static/js/main.ece11fe3.js.map"
   },
   "entrypoints": [
     "static/css/main.b49c2b48.css",
-    "static/js/main.3dd216b5.js"
+    "static/js/main.ece11fe3.js"
   ]
 }
