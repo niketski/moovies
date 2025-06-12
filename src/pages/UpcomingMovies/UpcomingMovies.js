@@ -1,4 +1,3 @@
-import { useState, useEffect, useContext } from 'react';
 import useListing from '../../hooks/listing';
 import styles from './UpcomingMovies.module.css';
 
@@ -18,15 +17,11 @@ const Movies = () => {
     const {
             data, 
             isLoading: isLoadingData, 
-            errorMessage, 
             genres: genreList,
-            isLoadingGenre,
-            errorType,
             activeGenres,
             currentPage,
             pageNumbers, 
             totalPages,
-            pageCount,
             updateSelectedGenre,
             updateSearch,
             updateCurrentPage,

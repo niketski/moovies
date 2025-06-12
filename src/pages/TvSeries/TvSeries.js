@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import styles from './TvSeries.module.css';
 import InnerPage from "../../components/layout/inner-page/InnerPage";
 import QuickSearch from "../../components/quick-search/QuickSearch";
@@ -17,15 +16,11 @@ const TvSeries = () => {
     const {
         data, 
         isLoading: isLoadingData, 
-        errorMessage, 
         genres: genreList,
-        isLoadingGenre,
-        errorType,
         activeGenres,
         currentPage,
         pageNumbers, 
         totalPages,
-        pageCount,
         updateSelectedGenre,
         updateSearch,
         updateCurrentPage,
